@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { login } from "../state/actions";
 import api, { setAuthToken } from "../axios";
-import './styles/signin.scss';
-
+import "./styles/signin.scss";
+import { signInWithGoogle } from "../services/firebase";
+import firebase from "firebase/compat/app";
 
 const SignIn = ({ isAuthenticated, login }) => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,16 @@ const SignIn = ({ isAuthenticated, login }) => {
   const [loader, setLoader] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
+  firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      const { displayName, email } = user;
+      setEmail(email);
+      setFullName(displayName);
+    } else {
+      <Redirect to="/signin" />;
+    }
+  });
+
   if (isAuthenticated) return <Redirect to="/home" />;
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +34,7 @@ const SignIn = ({ isAuthenticated, login }) => {
     try {
       setLoader(true);
       setDisabled(true);
-      const route = `/signin/${formModeLogin ? "login" : "register"}`;
+      const route = `auth/${formModeLogin ? "login" : "register"}`;
       const { data } = await api.post(route, { email, password, fullName });
       localStorage.setItem("token", data.token);
       setAuthToken(data.token);
@@ -50,7 +61,9 @@ const SignIn = ({ isAuthenticated, login }) => {
         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> METHI
       </h1>
       <form onSubmit={handleSubmit}>
-        <h5>{formModeLogin ? 'Log in to your account' : 'Create a new account' }</h5>
+        <h5>
+          {formModeLogin ? "Log in to your account" : "Create a new account"}
+        </h5>
         <input
           className="form-control"
           type="text"
@@ -96,6 +109,15 @@ const SignIn = ({ isAuthenticated, login }) => {
             ? "Sign up for an account"
             : "Already have an Methi account? Log in"}
         </button>
+        <div className="login-buttons">
+          <button className="login-provider-button" onClick={signInWithGoogle}>
+            <img
+              src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+              alt="google icon"
+            />
+            <span> Continue with Google</span>
+          </button>
+        </div>
       </form>
     </div>
   );
