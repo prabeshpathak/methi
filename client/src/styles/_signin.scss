@@ -1,0 +1,73 @@
+.signin {
+	h1 {
+		color: #0052cc;
+		text-align: center;
+		padding: 40px;
+	}
+
+	form {
+		border-radius: 3px;
+		box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.25);
+		max-width: 400px;
+		padding: 32px 40px;
+		margin: auto;
+
+		i {
+			animation: spin 0.4s linear infinite;
+			font-size: 21px;
+		}
+	}
+
+	input {
+		margin-top: 20px;
+		transition: all 0.3s;
+	}
+
+	&__expandable {
+		animation: inputAnim 0.3s ease-in;
+	}
+
+	h5 {
+		text-align: center;
+	}
+
+	&__submit {
+		border-radius: 3px;
+		background-color: #0052cc;
+		width: 100%;
+		color: white;
+		margin-top: 40px;
+
+		&:hover {
+			background-color: #0065ff;
+			color: white;
+		}
+	}
+
+	.btn-link {
+		font-size: 15px;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+@keyframes inputAnim {
+	0% {
+		height: 0;
+		opacity: 0;
+	}
+
+	100% {
+		height: auto;
+		opacity: 1;
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
