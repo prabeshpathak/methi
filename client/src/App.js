@@ -1,6 +1,6 @@
 import { HashRouter, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
-import PrivateRoute from "./components/PrivateRoute";
+import SignIn from './components/SignIn'
 import { useEffect, useState } from "react";
 import { connect } from 'react-redux'
 import { retrieveSession } from "./state/actions";
