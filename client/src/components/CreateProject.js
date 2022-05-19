@@ -16,8 +16,8 @@ const CreateProject = ({ issueCreated }) => {
     e.preventDefault();
     setFormPosting(true);
     try {
-      const { data } = await api.post("/projects/create", formdata);
-      issueCreated(data);
+      const { data } = await api.post("/projects/create", 
+      formdata);
       setNewProject(data._id);
     } catch (error) {
       console.log(error.response);
