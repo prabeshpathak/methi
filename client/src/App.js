@@ -2,6 +2,7 @@ import { useLocation, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import SignIn from "./components/SignIn";
 import Home from "./components/Home";
+import Boards from "./components/Boards";
 import CreateProject from "./components/CreateProject";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -33,6 +34,7 @@ function App({ retrieveSession }) {
             path="/projects/create"
             component={CreateProject}
           />
+          <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
         </Switch>
       </div>
     </div>
