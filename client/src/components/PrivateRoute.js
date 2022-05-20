@@ -8,7 +8,7 @@ const PrivateRoute = ({
 	component: Component,
 	...rest
 }) => (
-	<Route
+	<Route exact
 		{...rest}
 		render={(props) => {
 			if (!loading)

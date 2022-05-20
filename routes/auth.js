@@ -2,7 +2,9 @@ const {
   registerUser,
   generateAccessToken,
   login,
-} = require("../controllers/auth");
+} = require("../controllers/auth.controller");
+
+const router = require("express").Router();
 
 router.post("/register", async (req, res) => {
   try {
