@@ -1,5 +1,4 @@
 const Project = require("../models/project")
-const Issue = require("../models/issue")
 
 exports.createProject = async data => await Project.create(data);
 
