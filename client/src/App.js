@@ -4,6 +4,7 @@ import SignIn from "./components/SignIn";
 import Home from "./components/Home";
 import Boards from "./components/Boards";
 import CreateProject from "./components/CreateProject";
+import CreateTeam from "./components/CreateTeam";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
@@ -35,6 +36,7 @@ function App({ retrieveSession }) {
             component={CreateProject}
           />
           <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
+          <PrivateRoute exact path="/teams/create" component={CreateTeam} />
         </Switch>
       </div>
     </div>
