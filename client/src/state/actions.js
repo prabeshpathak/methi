@@ -1,11 +1,24 @@
 import api, { setAuthToken } from "../axios";
-import { SIGNIN_SUCCESS, LOGOUT } from "./types";
+import {
+  SIGNIN_SUCCESS,
+  LOGOUT,
+  NOTIFICATION_CREATED,
+  NOTIFICATION_REMOVED,
+} from "./types";
 import firebase from "firebase/compat";
 
 export const login = (user) => async (dispatch) => {
   dispatch({
     type: SIGNIN_SUCCESS,
     payload: user,
+  });
+  dispatch({
+    type: NOTIFICATION_CREATED,
+    payload: {
+      id: Date.now(),
+      message: "Signed in successfully",
+      className: "info-circle text-info",
+    },
   });
 };
 
@@ -41,4 +54,13 @@ export const retrieveSession = () => async (dispatch) => {
       type: LOGOUT,
     });
   }
+};
+
+export const setNotification = (message, className) => async (dispatch) => {
+  const id = Date.now();
+  dispatch({
+    type: NOTIFICATION_CREATED,
+    payload: { id, message, className },
+  });
+  setTimeout(() => dispatch({ type: NOTIFICATION_REMOVED, payload: id }), 3000);
 };
