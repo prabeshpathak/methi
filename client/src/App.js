@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
 import PrivateRoute from "./components/PrivateRoute";
+import About from "./components/About";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -29,6 +30,7 @@ function App({ retrieveSession }) {
       >
         <Switch location={location} key={location.pathname}>
           <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/about" component={About} />
           <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute
             exact

@@ -21,12 +21,9 @@ const About = ({ login, setNotification }) => {
     return (
         <div className="about container">
             <p>
-                Hello, this is Ahmed. <span className="fw-bold">Methi</span> is
+                Hello, this is Team Cults. <span className="fw-bold">Methi</span> is
                 basically a very light version of
-                <a href="https://www.atlassian.com/software/jira">Methi</a>. I thought
-                this would be the best project to demonstrate all the things I learned
-                through full stack development journey and use all techniques most
-                efficiently with the experience I had till now. I tried to remake the
+                <a href="https://www.atlassian.com/software/jira">Jira</a>. We tried to remake the
                 agile development part of Methi. You can create account then create a
                 team or get added to other teams in order to assign issues to others or
                 get assigned yourself. Project lead can create or modify issues and
