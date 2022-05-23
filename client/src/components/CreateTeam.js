@@ -74,7 +74,7 @@ const CreateTeam = ({ user, issueCreated }) => {
             style={{ border: "1px solid #ccc", borderRadius: "20%" }}
           />
           <form onSubmit={handleSubmit}>
-            <p>Get everyone's working in one place by adding them to a team.</p>
+            <p>Get everyone working in one place by adding them to a team.</p>
             <label className="text-secondary" htmlFor="teamName">
               Team Name
             </label>
