@@ -13,13 +13,49 @@ const CreateTeam = ({ user, issueCreated }) => {
   const [formPosting, setFormPosting] = useState(false);
   const searchRef = useRef();
 
-  const handleSubmit = async (e) => {};
 
-  const searchUser = async (e) => {};
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setFormPosting(true)
+    try {
+        issueCreated(data);
+        setNewTeam(data._id)
+    } catch (error) {
+        console.log(error.response);
+    }
+}
 
-  const checkAddedUser = (uid) => {};
+  const searchUser = async (e) => {
+    if (e.key === "Escape") {
+        e.target.blur()
+        setSearchDropDown(false)
+        e.target.value = ""
+        return
+    }
+    if (e.target.value !== "") {
+        try {
+            setSearchResult(data.filter(({ _id }) => checkAddedUser(_id)))
+            setSearchDropDown(true)
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+}
 
-  const addUser = async (_id, fullName) => {};
+  const checkAddedUser = uid => {
+    for (const member of members)
+        if (member._id === uid)
+            return false
+
+    return true
+}
+
+  const addUser = async (_id, fullName) => {
+    setMembers([...members, { _id, fullName }])
+    searchRef.current.value = ""
+    setSearchDropDown(false)
+    setSearchResult([])
+}
 
   if (newTeam) return <Redirect to={`/teams/${newTeam}`} />;
   if (!user) return null;
@@ -38,7 +74,7 @@ const CreateTeam = ({ user, issueCreated }) => {
             style={{ border: "1px solid #ccc", borderRadius: "20%" }}
           />
           <form onSubmit={handleSubmit}>
-            <p>Get everyone working in one place by adding them to a team.</p>
+            <p>Get everyone's working in one place by adding them to a team.</p>
             <label className="text-secondary" htmlFor="teamName">
               Team Name
             </label>
