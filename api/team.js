@@ -1,7 +1,32 @@
 const { authenticateToken } = require('../controllers/auth');
-const { createTeam } = require('../controllers/team');
+const { canMessage } = require('../controllers/message');
+const { createTeam, addToTeam, removeFromTeam, getTeams, getTeam, updateTeam, search, deleteTeam } = require('../controllers/team');
 
 const router = require('express').Router()
+
+
+// Search for user
+router.get("/search/:query/:team", authenticateToken, async (req, res) => {
+    try {
+        res.send(await search(req.params.query, req.params.team))
+    } catch (error) {
+        res.send(error.message);;
+    }
+})
+
+// Delete team
+router.delete("/:id", authenticateToken, async (req, res) => {
+    try {
+        const { lead } = await getTeam(req.params.id)
+        if(req.user._id !== lead.toString())
+            return res.status(401).send("Not authorized");
+        
+        await deleteTeam(req.params.id)
+        res.send("Team deleted")
+    } catch (error) {
+        res.send(error.message);;
+    }
+})
 
 // Create new team
 router.post("/create", authenticateToken, async (req, res) => {
@@ -15,6 +40,14 @@ router.post("/create", authenticateToken, async (req, res) => {
     }
 })
 
+// Add member
+router.post("/add", authenticateToken, async (req, res) => {
+    try {
+        res.send(await addToTeam(req.body, req.user._id))
+    } catch (error) {
+        res.send(error.message);;
+    }
+})
 
 
 

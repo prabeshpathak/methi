@@ -24,7 +24,7 @@ if (process.env.NODE_ENV == "development") {
 }
 
 // Routes
-app.use('/api/signin', require("./api/signIn"))
+app.use('/api/signin', require("./api/signin"))
 app.use('/api/projects', require("./api/project"))
 app.use('/api/teams', require("./api/team"))
 

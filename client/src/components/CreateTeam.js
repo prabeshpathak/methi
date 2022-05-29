@@ -14,10 +14,12 @@ const CreateTeam = ({ user, issueCreated }) => {
   const searchRef = useRef();
 
 
+
   const handleSubmit = async e => {
     e.preventDefault()
     setFormPosting(true)
     try {
+        const { data } = await api.post("/teams/create", { title, members });
         issueCreated(data);
         setNewTeam(data._id)
     } catch (error) {
@@ -25,7 +27,7 @@ const CreateTeam = ({ user, issueCreated }) => {
     }
 }
 
-  const searchUser = async (e) => {
+const searchUser = async (e) => {
     if (e.key === "Escape") {
         e.target.blur()
         setSearchDropDown(false)
@@ -34,6 +36,7 @@ const CreateTeam = ({ user, issueCreated }) => {
     }
     if (e.target.value !== "") {
         try {
+            const { data } = await api.get(`/teams/search/${e.target.value}/new`)
             setSearchResult(data.filter(({ _id }) => checkAddedUser(_id)))
             setSearchDropDown(true)
         } catch (error) {
@@ -42,7 +45,7 @@ const CreateTeam = ({ user, issueCreated }) => {
     }
 }
 
-  const checkAddedUser = uid => {
+const checkAddedUser = uid => {
     for (const member of members)
         if (member._id === uid)
             return false
@@ -50,12 +53,13 @@ const CreateTeam = ({ user, issueCreated }) => {
     return true
 }
 
-  const addUser = async (_id, fullName) => {
+const addUser = async (_id, fullName) => {
     setMembers([...members, { _id, fullName }])
     searchRef.current.value = ""
     setSearchDropDown(false)
     setSearchResult([])
 }
+
 
   if (newTeam) return <Redirect to={`/teams/${newTeam}`} />;
   if (!user) return null;
