@@ -49,6 +49,17 @@ router.post("/add", authenticateToken, async (req, res) => {
     }
 })
 
+// Remove member
+router.post("/remove", authenticateToken, async (req, res) => {
+    try {
+        await removeFromTeam(req.body, req.user._id)
+        res.send("Member removed")
+    } catch (error) {
+        res.send(error.message);;
+    }
+})
+
+
 
 
 module.exports = router
