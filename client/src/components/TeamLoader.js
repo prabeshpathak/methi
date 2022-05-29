@@ -1,4 +1,6 @@
 import React from "react";
+import "./styles/_team.scss";
+
 
 const memberStyles = {
   backgroundColor: "rgb(235, 236, 240)",
