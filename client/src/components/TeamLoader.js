@@ -11,7 +11,7 @@ const TeamLoader = () => {
   return (
     <div className="team-loader">
       <img
-        src={`${process.env.PUBLIC_URL}/teambg.PNG`}
+        src={`../../public/teambg.PNG`}
         className="team__header"
         alt="teambackground"
       />
