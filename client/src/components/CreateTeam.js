@@ -4,7 +4,7 @@ import api from "../axios";
 import { Redirect } from "react-router-dom";
 import "./styles/_createTeam.scss";
 
-const CreateTeam = ({ user, issueCreated }) => {
+const CreateTeam = ({ user}) => {
   const [title, setTitle] = useState("");
   const [newTeam, setNewTeam] = useState(null);
   const [members, setMembers] = useState([]);
@@ -18,7 +18,6 @@ const CreateTeam = ({ user, issueCreated }) => {
     setFormPosting(true);
     try {
       const { data } = await api.post("/teams/create", { title, members });
-      issueCreated(data);
       setNewTeam(data._id);
     } catch (error) {
       console.log(error.response);
