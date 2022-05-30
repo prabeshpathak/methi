@@ -2,15 +2,15 @@ import { useLocation, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import SignIn from "./components/SignIn";
 import Home from "./components/Home";
-import Boards from "./components/Boards";
 import CreateProject from "./components/CreateProject";
 import CreateTeam from "./components/CreateTeam";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
 import PrivateRoute from "./components/PrivateRoute";
-import About from "./components/About";
 import Team from "./components/Team";
+import About from "./components/About";
+import Boards from './components/Boards';
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -38,9 +38,9 @@ function App({ retrieveSession }) {
             path="/projects/create"
             component={CreateProject}
           />
-          
+          <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
           <PrivateRoute exact path="/teams/create" component={CreateTeam} />
-          
+          <PrivateRoute exact path="/teams/:id" component={Team} />
         </Switch>
       </div>
     </div>

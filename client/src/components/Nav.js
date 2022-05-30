@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../state/actions";
-import "./styles/nav.scss";
+import api from "../axios";
+import './styles/_nav.scss';
 
 async function fetchData(lead) {
-  return "fetching data";
+  return {
+    projects: await api.get("/projects"),
+    teams: await api.get("/teams"),
+  };
 }
 
 const Nav = ({
@@ -42,6 +46,16 @@ const Nav = ({
     return () => window.removeEventListener("keydown", handleEscape);
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (created?.hasOwnProperty("members")) {
+      setTeams((prev) => [...prev, created]);
+      return;
+    }
+    if (created?.hasOwnProperty("key")) {
+      setProjects((prev) => [...prev, created]);
+    }
+  }, [created]);
 
   return (
     <nav

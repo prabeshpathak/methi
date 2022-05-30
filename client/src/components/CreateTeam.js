@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import api from "../axios";
 import { Redirect } from "react-router-dom";
-import "./styles/createTeam.scss";
 
 const CreateTeam = ({ user, issueCreated }) => {
   const [title, setTitle] = useState("");
@@ -13,53 +12,48 @@ const CreateTeam = ({ user, issueCreated }) => {
   const [formPosting, setFormPosting] = useState(false);
   const searchRef = useRef();
 
-
-
-  const handleSubmit = async e => {
-    e.preventDefault()
-    setFormPosting(true)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormPosting(true);
     try {
-        const { data } = await api.post("/teams/create", { title, members });
-        issueCreated(data);
-        setNewTeam(data._id)
+      const { data } = await api.post("/teams/create", { title, members });
+      issueCreated(data);
+      setNewTeam(data._id);
     } catch (error) {
-        console.log(error.response);
+      console.log(error.response);
     }
-}
+  };
 
-const searchUser = async (e) => {
+  const searchUser = async (e) => {
     if (e.key === "Escape") {
-        e.target.blur()
-        setSearchDropDown(false)
-        e.target.value = ""
-        return
+      e.target.blur();
+      setSearchDropDown(false);
+      e.target.value = "";
+      return;
     }
     if (e.target.value !== "") {
-        try {
-            const { data } = await api.get(`/teams/search/${e.target.value}/new`)
-            setSearchResult(data.filter(({ _id }) => checkAddedUser(_id)))
-            setSearchDropDown(true)
-        } catch (error) {
-            console.log(error.response);
-        }
+      try {
+        const { data } = await api.get(`/teams/search/${e.target.value}/new`);
+        setSearchResult(data.filter(({ _id }) => checkAddedUser(_id)));
+        setSearchDropDown(true);
+      } catch (error) {
+        console.log(error.response);
+      }
     }
-}
+  };
 
-const checkAddedUser = uid => {
-    for (const member of members)
-        if (member._id === uid)
-            return false
+  const checkAddedUser = (uid) => {
+    for (const member of members) if (member._id === uid) return false;
 
-    return true
-}
+    return true;
+  };
 
-const addUser = async (_id, fullName) => {
-    setMembers([...members, { _id, fullName }])
-    searchRef.current.value = ""
-    setSearchDropDown(false)
-    setSearchResult([])
-}
-
+  const addUser = async (_id, fullName) => {
+    setMembers([...members, { _id, fullName }]);
+    searchRef.current.value = "";
+    setSearchDropDown(false);
+    setSearchResult([]);
+  };
 
   if (newTeam) return <Redirect to={`/teams/${newTeam}`} />;
   if (!user) return null;
@@ -73,9 +67,8 @@ const addUser = async (_id, fullName) => {
         <h2>Start a new team</h2>
         <div className="create-team__main">
           <img
-            src="https://static8.depositphotos.com/1010652/915/v/950/depositphotos_9157216-stock-illustration-management-team-doodle.jpg"
+            src={`${process.env.PUBLIC_URL}/create-team.PNG`}
             alt="createteam"
-            style={{ border: "1px solid #ccc", borderRadius: "20%" }}
           />
           <form onSubmit={handleSubmit}>
             <p>Get everyone working in one place by adding them to a team.</p>

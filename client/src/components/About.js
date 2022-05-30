@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import api, { setAuthToken } from "../axios";
 import { login, setNotification } from "../state/actions";
-import "./styles/about.scss";
+import "./styles/_about.scss";
 
 const About = ({ login, setNotification }) => {
     const loginData = {
