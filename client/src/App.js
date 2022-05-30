@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./components/About";
+import Team from "./components/Team";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -39,6 +40,7 @@ function App({ retrieveSession }) {
           />
           <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
           <PrivateRoute exact path="/teams/create" component={CreateTeam} />
+          <PrivateRoute exact path="/teams/:id" component={Team} />
         </Switch>
       </div>
     </div>
