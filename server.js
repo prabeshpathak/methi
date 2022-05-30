@@ -27,6 +27,7 @@ if (process.env.NODE_ENV == "development") {
 app.use('/api/signin', require("./api/signin"))
 app.use('/api/projects', require("./api/project"))
 app.use('/api/teams', require("./api/team"))
+app.use("/api/messages", require("./api/message"));
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));

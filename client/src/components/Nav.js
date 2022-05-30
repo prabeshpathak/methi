@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../state/actions";
 import api from "../axios";
-import './styles/_nav.scss';
+import "./styles/_nav.scss";
 
-async function fetchData(lead) {
+async function fetchData() {
   return {
     projects: await api.get("/projects"),
     teams: await api.get("/teams"),
@@ -24,12 +24,12 @@ const Nav = ({
 }) => {
   const [projects, setProjects] = useState([]);
   const [teams, setTeams] = useState([]);
-
   useEffect(() => {
     if (!loading && user)
       (async () => {
         try {
           const response = await fetchData(user._id);
+          console.log(response);
           setProjects(response.projects.data);
           setTeams(response.teams.data);
         } catch (error) {

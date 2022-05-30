@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/_team.scss";
 
-
 const memberStyles = {
   backgroundColor: "rgb(235, 236, 240)",
   width: 115,
@@ -13,7 +12,7 @@ const TeamLoader = () => {
   return (
     <div className="team-loader">
       <img
-        src={`../../public/teambg.PNG`}
+        src={`${process.env.PUBLIC_URL}/teambg.PNG`}
         className="team__header"
         alt="teambackground"
       />
