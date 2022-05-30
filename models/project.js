@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Issue = require("./issue");
+
 
 const projectSchema = mongoose.Schema({
     title: {

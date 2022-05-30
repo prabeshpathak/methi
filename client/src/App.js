@@ -4,10 +4,13 @@ import SignIn from "./components/SignIn";
 import Home from "./components/Home";
 import Boards from "./components/Boards";
 import CreateProject from "./components/CreateProject";
+import CreateTeam from "./components/CreateTeam";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
 import PrivateRoute from "./components/PrivateRoute";
+import About from "./components/About";
+import Team from "./components/Team";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -28,13 +31,16 @@ function App({ retrieveSession }) {
       >
         <Switch location={location} key={location.pathname}>
           <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/about" component={About} />
           <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute
             exact
             path="/projects/create"
             component={CreateProject}
           />
-          <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
+          
+          <PrivateRoute exact path="/teams/create" component={CreateTeam} />
+          
         </Switch>
       </div>
     </div>

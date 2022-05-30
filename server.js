@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
-const routes = require("./routes");
+// const routes = require("./routes");
 
 const app = express();
 app.use(express.json());
@@ -24,7 +24,9 @@ if (process.env.NODE_ENV == "development") {
 }
 
 // Routes
-app.use(routes);
+app.use('/api/signin', require("./api/signin"))
+app.use('/api/projects', require("./api/project"))
+app.use('/api/teams', require("./api/team"))
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));

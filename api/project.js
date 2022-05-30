@@ -7,6 +7,7 @@ const router = require('express').Router()
 // Create new project
 router.post("/create", authenticateToken, async (req, res) => {
     try {
+        console.log("hello");
         const project = await createProject({...req.body, lead : req.user._id})
         res.send(project)
     } catch (error) {

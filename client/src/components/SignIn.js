@@ -22,7 +22,7 @@ const SignIn = ({ isAuthenticated, login }) => {
       setEmail(email);
       setFullName(displayName);
     } else {
-      <Redirect to="/signin" />;
+      <Redirect to="/register" />;
     }
   });
 
@@ -34,7 +34,7 @@ const SignIn = ({ isAuthenticated, login }) => {
     try {
       setLoader(true);
       setDisabled(true);
-      const route = `auth/${formModeLogin ? "login" : "register"}`;
+      const route = `/signin/${formModeLogin ? "login" : "register"}`;
       const { data } = await api.post(route, { email, password, fullName });
       localStorage.setItem("token", data.token);
       setAuthToken(data.token);
