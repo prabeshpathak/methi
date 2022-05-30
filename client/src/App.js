@@ -38,9 +38,9 @@ function App({ retrieveSession }) {
             path="/projects/create"
             component={CreateProject}
           />
-          <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
+          
           <PrivateRoute exact path="/teams/create" component={CreateTeam} />
-          <PrivateRoute exact path="/teams/:id" component={Team} />
+          
         </Switch>
       </div>
     </div>
