@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import api from "../axios";
 import { Redirect } from "react-router-dom";
+import "./styles/_createTeam.scss";
 
 const CreateTeam = ({ user, issueCreated }) => {
   const [title, setTitle] = useState("");
@@ -67,7 +68,7 @@ const CreateTeam = ({ user, issueCreated }) => {
         <h2>Start a new team</h2>
         <div className="create-team__main">
           <img
-            src={`${process.env.PUBLIC_URL}/create-team.PNG`}
+            src={`https://images.unsplash.com/photo-1630446012689-9916791c866b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80`}
             alt="createteam"
           />
           <form onSubmit={handleSubmit}>

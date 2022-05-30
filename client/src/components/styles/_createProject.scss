@@ -1,38 +1,38 @@
 .create-project {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 60px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 60px);
 
-  &__main {
-    display: flex;
-  }
+	&__main {
+		display: flex;
+	}
 
-  form {
-    text-align: left;
-    button {
-      font-weight: 700;
-    }
-  }
+	form {
+		text-align: left;
+		button {
+			font-weight: 700;
+		}
+	}
 
-  img {
-    height: 100px;
-    background-color: rgb(244, 245, 247);
-    padding: 21px 7px;
-    border-radius: 5px;
-  }
+	img {
+		height: 100px;
+		background-color: rgb(244, 245, 247);
+		padding: 21px 7px;
+		border-radius: 5px;
+	}
 
-  &__info {
-    margin-left: 66px;
-    background: rgb(250, 251, 252);
-    border-radius: 16px;
-    padding: 20px;
-    width: 500px;
+	&__info {
+		margin-left: 66px;
+		background: rgb(250, 251, 252);
+		border-radius: 16px;
+		padding: 20px;
+		width: 500px;
 
-    h5 {
-      color: rgb(107, 119, 140);
-      font-size: 14px;
-    }
-  }
+		h5 {
+			color: rgb(107, 119, 140);
+			font-size: 14px;
+		}
+	}
 }
