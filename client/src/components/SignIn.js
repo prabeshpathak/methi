@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { login } from "../state/actions";
 import api, { setAuthToken } from "../axios";
-import "./styles/signin.scss";
+import "./styles/_signin.scss";
 import { signInWithGoogle } from "../services/firebase";
 import firebase from "firebase/compat/app";
 
