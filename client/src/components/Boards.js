@@ -1,7 +1,7 @@
 import React from "react";
 
 function Boards() {
-  return <div>Boards</div>;
+  return <div>Backlog</div>;
 }
 
 export default Boards;
