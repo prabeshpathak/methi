@@ -20,5 +20,19 @@ const sprintSchema = mongoose.Schema({
   goal: String,
 });
 
+sprintSchema.pre("findOneAndDelete", async function (next) {
+  const sid = this.getFilter()["_id"];
+  Issue.find({ sprint: sid }, (err, issues) => {
+    if (err) return;
+    issues.map((issue) => {
+      if (issue.issueStatus === "done") issue.remove();
+      else {
+        issue.sprint = undefined;
+        issue.save();
+      }
+    });
+  });
+  next();
+});
 
 module.exports = mongoose.model("SprintSchema", sprintSchema);
