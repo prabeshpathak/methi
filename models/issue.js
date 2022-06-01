@@ -37,5 +37,27 @@ const issueSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+issueSchema.pre("findOneAndUpdate", async function (next) {
+  if (this.getUpdate().epic === "") {
+    this.getUpdate().epic = undefined;
+    const doc = await this.model.findOne(this.getQuery());
+    doc.epic = undefined;
+    doc.save();
+  }
+  if (this.getUpdate().sprint === "") {
+    this.getUpdate().sprint = undefined;
+    const doc = await this.model.findOne(this.getQuery());
+    doc.sprint = undefined;
+    doc.save();
+  }
+  if (this.getUpdate().assignee === "") {
+    this.getUpdate().assignee = undefined;
+    const doc = await this.model.findOne(this.getQuery());
+    doc.assignee = undefined;
+    doc.save();
+  }
+  next();
+});
+
 
 module.exports = mongoose.model("IssueSchema", issueSchema);
