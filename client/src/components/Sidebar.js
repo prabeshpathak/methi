@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles/_sidebar.scss";
 
 const Sidebar = ({ project, navigation }) => {
   return (
@@ -31,6 +32,7 @@ const Sidebar = ({ project, navigation }) => {
         >
           <i className="fa fa-th-list" aria-hidden="true"></i> Backlog
         </Link>
+        {console.log(project)}
         <Link
           onClick={(e) => !project && e.preventDefault()}
           className={`${navigation === "boards" ? "sidebar--active" : ""}`}

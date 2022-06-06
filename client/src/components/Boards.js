@@ -31,6 +31,7 @@ const Boards = ({ match, user, setNotification }) => {
       const data = await fetchData(match.params.id);
       setSprint(data.sprint);
       setIssues(data.issues);
+      console.log(data.project);
       setProject(data.project);
       setLoading(false);
     })();
