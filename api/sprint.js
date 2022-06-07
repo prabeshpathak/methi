@@ -33,7 +33,8 @@ router.get("/active/:id", authenticateToken, async (req, res) => {
         let issues = [];
         if(sprint)
             issues = await activeSprintIssues(sprint._id)
-        res.json({sprint, issues, project})
+        res.json({ sprint, issues, project })
+        console.log('hited')
     } catch (error) {
         res.send(error.message);;
     }

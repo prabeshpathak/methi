@@ -29,7 +29,6 @@ const Nav = ({
       (async () => {
         try {
           const response = await fetchData(user._id);
-          console.log(response);
           setProjects(response.projects.data);
           setTeams(response.teams.data);
         } catch (error) {

@@ -31,7 +31,6 @@ const Boards = ({ match, user, setNotification }) => {
       const data = await fetchData(match.params.id);
       setSprint(data.sprint);
       setIssues(data.issues);
-      console.log(data.project);
       setProject(data.project);
       setLoading(false);
     })();
@@ -87,7 +86,7 @@ const Boards = ({ match, user, setNotification }) => {
               onMouseDown={(e) => e.stopPropagation()}
             >
               <img
-                src={`${process.env.PUBLIC_URL}/sprint-completed.PNG`}
+                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80"
                 alt="sprint completed"
               />
               <div className="p-4">
@@ -174,7 +173,7 @@ const Boards = ({ match, user, setNotification }) => {
                 <img
                   className="mt-3"
                   height={128}
-                  src="/nosprint.png"
+                  src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80"
                   alt="no sprint"
                 />
                 <p className="text-center mt-1">
