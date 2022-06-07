@@ -1,0 +1,272 @@
+.outer-container {
+	&:focus-visible {
+		outline: 0;
+	}
+}
+.issue {
+	&__nav {
+		display: flex;
+		position: relative;
+
+		a {
+			color: #6b778c;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		span {
+			margin: 0 10px;
+		}
+
+		button {
+			border-radius: 3px;
+			font-weight: 500;
+			color: rgb(66, 82, 110);
+			transition: all 0.3s;
+			background: white;
+			border: 0;
+			padding: 0 7px;
+			position: relative;
+
+			&:hover {
+				background: rgba(9, 30, 66, 0.08);
+			}
+			&:focus {
+				outline: 0;
+			}
+		}
+	}
+
+	&__context {
+		position: absolute;
+		top: 27px;
+		width: max-content;
+		background-color: white;
+		box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+			rgba(9, 30, 66, 0.31) 0px 0px 1px;
+		border-radius: 3px;
+		p {
+			margin: 0;
+			font-size: 17px;
+			font-weight: normal;
+			padding: 8px 12px 7px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: rgb(244, 245, 247);
+			}
+		}
+
+		.label {
+			font-size: 13px;
+			cursor: default;
+			&:hover {
+				background-color: inherit;
+			}
+		}
+
+		&--type {
+			left: 6px;
+			height: 160px;
+		}
+
+		&--epic {
+			left: 0;
+		}
+	}
+
+	&__hero {
+		display: flex;
+		margin-top: 20px;
+		align-items: flex-start;
+
+		> div:nth-child(1) {
+			min-width: 600px;
+		}
+
+		h6 {
+			font-family: sans-serif;
+			font-weight: bold;
+			margin-top: 33px;
+		}
+
+		form {
+			text-align: left;
+		}
+
+		textarea {
+			resize: none;
+			width: 100%;
+			border: 0;
+			padding: 20px;
+			height: 120px;
+			transition: all 0.2s;
+
+			&:focus-visible {
+				outline: 0;
+				border: 1px solid rgb(223, 225, 230);
+			}
+		}
+
+		.textarea-inactive {
+			height: 64px;
+			overflow: hidden;
+
+			&:hover {
+				background-color: rgb(235, 236, 240);
+			}
+		}
+	}
+
+	&__summary {
+		text-align: left;
+		margin-top: 10px;
+
+		input {
+			border: 0;
+			font-size: 24px;
+			font-weight: 500;
+			transition: all 0.2s;
+			padding: 5px;
+			border-radius: 3px;
+			width: 100%;
+
+			&:hover {
+				background-color: rgb(235, 236, 240);
+			}
+
+			&:focus-visible {
+				outline: 0;
+				border: #1697ff 2px solid;
+			}
+		}
+	}
+
+	&__comments {
+		textarea {
+			border: 1px solid rgb(223, 225, 230);
+		}
+		.protip {
+			margin: 0;
+			font-size: 12px;
+		}
+	}
+
+	&__status {
+		text-align: right;
+		select,
+		option {
+			text-transform: capitalize;
+			text-align: left;
+			color: black;
+			padding: 7px;
+			border-radius: 3px;
+			cursor: pointer;
+			transition: all 0.2s;
+			background-color: white;
+
+			&:focus-visible {
+				outline: 0;
+			}
+		}
+
+		.select--todo {
+			background-color: rgba(9, 30, 66, 0.04);
+			color: black;
+			&:hover {
+				background-color: rgb(223, 225, 230);
+			}
+		}
+
+		.select--inprogress {
+			background-color: rgb(0, 82, 204);
+			color: white;
+			&:hover {
+				background-color: rgb(7, 71, 166);
+			}
+		}
+
+		.select--done {
+			background-color: rgb(0, 135, 90);
+			color: white;
+			&:hover {
+				background-color: rgb(0, 102, 68);
+			}
+		}
+	}
+
+	&__details {
+		margin-top: 5px;
+
+		.expandBtn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 12px;
+			padding: 16px;
+			transition: all 0.2s;
+			border-radius: 4px;
+			border: 1px solid rgb(223, 225, 230);
+
+			&:hover {
+				background: rgb(244, 245, 247);
+				cursor: pointer;
+			}
+			h6 {
+				color: #42526e;
+				margin: 0;
+			}
+		}
+
+		.expandable {
+			padding: 12px;
+			border-radius: 4px;
+			border: 1px solid rgb(223, 225, 230);
+		}
+
+		.expandable--hidden {
+			visibility: hidden;
+			height: 0;
+		}
+
+		label {
+			font-size: 12px;
+			color: rgb(66, 82, 110);
+			font-weight: 500;
+			min-width: 62px;
+			text-align: left;
+		}
+		form {
+			margin-top: 15px;
+		}
+		select,
+		option,
+		input {
+			width: 230px;
+			text-align: left;
+			border: 0;
+			padding: 9px;
+			border-radius: 3px;
+			transition: all 0.2s;
+
+			&:hover {
+				background-color: rgb(235, 236, 240);
+			}
+
+			&:focus-visible {
+				outline: 0;
+			}
+		}
+	}
+
+	&__deleteBtn {
+		.btn {
+			&:focus {
+				box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.5);
+			}
+		}
+	}
+}
