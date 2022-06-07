@@ -4,6 +4,8 @@ import {
   LOGOUT,
   NOTIFICATION_CREATED,
   NOTIFICATION_REMOVED,
+  ISSUE_CREATED,
+  ISSUE_CREATED_DONE,
 } from "./types";
 import firebase from "firebase/compat";
 
@@ -55,6 +57,17 @@ export const retrieveSession = () => async (dispatch) => {
     });
   }
 };
+
+export const issueCreated = (issue) => async (dispatch) =>
+  dispatch({
+    type: ISSUE_CREATED,
+    payload: issue,
+  });
+
+export const issueCreatedDone = () => async (dispatch) =>
+  dispatch({
+    type: ISSUE_CREATED_DONE,
+  });
 
 export const setNotification = (message, className) => async (dispatch) => {
   const id = Date.now();
