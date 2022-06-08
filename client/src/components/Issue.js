@@ -39,6 +39,73 @@ const Issue = ({ match, user, setNotification }) => {
 			fetchData();
 	}, [match.params.id, user]);
 
+    const updateIssueType = async (e) => {
+		try {
+			const issueType = e.target.getAttribute("selectedval");
+			await api.patch(`/issues/${issue._id}`, {
+				issueType,
+				project: issue.project._id,
+			});
+			setIssue({ ...issue, issueType });
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
+    const updateEpic = async (e) => {
+		try {
+			await api.patch(`/issues/${issue._id}`, {
+				epic: e.target.getAttribute("selectedid"),
+				project: issue.project._id,
+			});
+
+			setIssue({
+				...issue,
+				epic:
+					e.target.getAttribute("selectedid") === ""
+						? null
+						: {
+							_id: e.target.getAttribute("selectedid"),
+							summary: e.target.getAttribute("selectedval"),
+						},
+			});
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
+
+	const updateSummary = async (e) => {
+		e.preventDefault();
+		if (issue.summary !== "")
+			try {
+				await api.patch(`/issues/${issue._id}`, {
+					summary: issue.summary,
+					project: issue.project._id,
+				});
+				setNotification("Issue updated", "info text-info");
+			} catch (error) {
+				console.log(error.response);
+			}
+	};
+
+    const updateDescription = async (e) => {
+		e.preventDefault();
+		try {
+			await api.patch(`/issues/${issue._id}`, {
+				description: editedDescription,
+				project: issue.project._id,
+			});
+			setIssue({ ...issue, description: editedDescription })
+			setDescriptionEditing(false)
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
 
 	const formatDate = date => new Date(date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
 
