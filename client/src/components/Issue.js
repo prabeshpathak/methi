@@ -106,6 +106,81 @@ const Issue = ({ match, user, setNotification }) => {
 		}
 	};
 
+    const updateIssueStatus = async (e) => {
+		try {
+			const issueStatus = e.target.value
+			await api.patch(`/issues/status/${issue._id}`, {
+				issueStatus,
+				project: issue.project._id,
+			});
+			setIssue({ ...issue, issueStatus });
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
+
+
+	const updateAssignee = async (e) => {
+		try {
+			const { options, value } = e.target;
+			await api.patch(`/issues/${issue._id}`, {
+				assignee: value,
+				project: issue.project._id,
+			});
+			setIssue({
+				...issue,
+				assignee:
+					value === ""
+						? null
+						: {
+							_id: value,
+							fullName: options[e.target.selectedIndex].text,
+						},
+			});
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
+	const updateLabels = async (e) => {
+		e.preventDefault();
+		try {
+			await api.patch(`/issues/${issue._id}`, {
+				labels: issue.labels,
+				project: issue.project._id,
+			});
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
+	const updateSprint = async (e) => {
+		try {
+			const { options, value } = e.target;
+			await api.patch(`/issues/${issue._id}`, {
+				sprint: value,
+				project: issue.project._id,
+			});
+			setIssue({
+				...issue,
+				sprint:
+					value === ""
+						? null
+						: {
+							_id: value,
+							summary: options[e.target.selectedIndex].text,
+						},
+			});
+			setNotification("Issue updated", "info text-info");
+		} catch (error) {
+			console.log(error.response);
+		}
+	};
+
 
 	const formatDate = date => new Date(date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
 
