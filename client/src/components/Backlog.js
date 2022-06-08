@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./styles/_backlog.scss";
 
+
 async function fetchData(id) {
   const data = {};
   let response;
