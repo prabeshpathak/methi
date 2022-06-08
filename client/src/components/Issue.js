@@ -182,6 +182,38 @@ const Issue = ({ match, user, setNotification }) => {
 	};
 
 
+	const toggleContext = (e, context) => {
+		e.stopPropagation();
+		setEpicContext(context === "epic" ? !epicContext : false);
+		setIssueTypeContext(context === "issue" ? !issueTypeContext : false);
+	};
+
+	const closeContextMenus = () => {
+		setIssueTypeContext(false);
+		setEpicContext(false);
+		setActiveComment(null)
+		setCommentDeleteModal(null)
+	};
+
+	const cancelEdit = (e) => {
+		e && e.target.blur()
+		setEditedDescription(issue.description)
+		setDescriptionEditing(false)
+	}
+
+	const getSelectClass = () => {
+		switch (issue.issueStatus) {
+			case "in progress":
+				return "select--inprogress"
+			case "done":
+				return "select--done"
+			default:
+				return "select--todo"
+		}
+	}
+
+
+
 	const formatDate = date => new Date(date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
 
 	if (issueDeleted) return <Redirect to={`/projects/backlog/${issue.project._id}`} />
