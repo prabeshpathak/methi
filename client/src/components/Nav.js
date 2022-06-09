@@ -160,7 +160,7 @@ const Nav = ({
               </button>
             </>
           ) : (
-            <Link to="/signin" className="btn btn-sm btn-outline-primary">
+            <Link to="/signin" id='getFormBtn' className="btn btn-sm btn-outline-primary">
               Get it free
             </Link>
           )}
