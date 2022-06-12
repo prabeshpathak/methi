@@ -1,14 +1,12 @@
 const { authenticateToken, authorizations } = require("../controllers/auth");
-// const { canComment, getComments } = require('../controllers/comment');
+const { canComment, getComments } = require("../controllers/comment");
 const {
   createIssue,
   getIssues,
   updateIssue,
   backlogIssues,
   getIssue,
-  epicIssues,
   deleteIssue,
-  getRoadmap,
 } = require("../controllers/issue");
 const { getSprints } = require("../controllers/sprint");
 const { getTeamAssignees } = require("../controllers/team");
@@ -35,29 +33,18 @@ router.get("/backlog/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Get all epic of a project
-router.get("/roadmap/:id", authenticateToken, async (req, res) => {
-  try {
-    const issues = await getRoadmap(req.params.id);
-    res.send(issues);
-  } catch (error) {
-    res.send(error.message);
-  }
-});
-
 // Get all detail of an issue
 router.get("/:id", authenticateToken, async (req, res) => {
   try {
     const issue = await getIssue(req.params.id);
     if (!issue) return res.status(404).send("Issue not found");
-    const epics = await epicIssues(issue.project);
     const sprints = await getSprints(issue.project._id);
     const assignees = await getTeamAssignees(issue.project.lead);
     const comments = await getComments(req.params.id);
     const commentPermission = (await canComment(req.params.id, req.user._id))
       ? true
       : false;
-    res.send({ issue, epics, sprints, assignees, comments, commentPermission });
+    res.send({ issue, sprints, assignees, comments, commentPermission });
   } catch (error) {
     res.send(error.message);
   }
