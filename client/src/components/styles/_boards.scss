@@ -1,0 +1,30 @@
+.boards {
+  &__container {
+    background-color: rgb(244, 245, 247);
+    margin: 0 6px;
+    padding: 15px;
+    border-radius: 6px;
+    width: 300px;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+  &__completed {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0 17px;
+      color: #6b778c;
+    }
+  }
+
+  &__issue {
+    background-color: white;
+    padding: 12px;
+    border-radius: 6px;
+    display: block;
+    color: #212529;
+    text-decoration: none;
+  }
+}

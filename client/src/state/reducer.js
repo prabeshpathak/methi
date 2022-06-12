@@ -3,6 +3,8 @@ import {
   SIGNIN_SUCCESS,
   NOTIFICATION_CREATED,
   NOTIFICATION_REMOVED,
+  ISSUE_CREATED,
+  ISSUE_CREATED_DONE,
 } from "./types";
 
 const { combineReducers } = require("redux");
@@ -11,6 +13,7 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
+  created: null,
   notifications: [],
 };
 
@@ -33,6 +36,17 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
 
+    case ISSUE_CREATED:
+      return {
+        ...state,
+        created: payload,
+      };
+
+    case ISSUE_CREATED_DONE:
+      return {
+        ...state,
+        created: null,
+      };
     case NOTIFICATION_CREATED:
       return {
         ...state,

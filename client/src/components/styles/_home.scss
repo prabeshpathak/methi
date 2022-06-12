@@ -1,0 +1,115 @@
+.landing {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 110px;
+
+	h1 {
+		font-size: 2.75rem;
+		max-width: 400px;
+		text-align: left;
+	}
+
+	img {
+		width: 460px;
+		margin-left: 100px;
+	}
+}
+
+.home {
+	padding-top: 35px;
+	a {
+		text-decoration: none;
+		transition: all 0.1s;
+	}
+
+	&__label {
+		margin-top: 50px;
+		margin-bottom: 22px;
+	}
+
+	&__projects {
+		display: flex;
+		margin-bottom: 30px;
+	}
+
+	&__project {
+		width: 250px;
+		padding-top: 16px;
+		padding-left: 4px;
+		border-radius: 3px;
+		border-left: 20px solid rgb(255, 227, 128);
+		margin-right: 10px;
+		color: rgb(107, 119, 140);
+
+		&:hover {
+			box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	&__assigned {
+		margin-top: 18px;
+		p {
+			margin: 0;
+			font-size: 13px;
+			color: black;
+		}
+
+		a {
+			display: flex;
+			align-items: center;
+			margin-top: 14px;
+
+			&:hover {
+				background-color: rgba(9, 30, 66, 0.04);
+			}
+
+			div {
+				width: 50%;
+				margin-left: 20px;
+			}
+		}
+	}
+}
+
+.projects-loader {
+	width: 250px;
+	padding-top: 16px;
+	padding-left: 4px;
+	border-radius: 3px;
+	border-left: 20px solid rgb(255, 227, 128);
+	margin-right: 10px;
+
+	&__content {
+		background-color: #cbcbcb;
+		border-radius: 3px;
+		width: 225px;
+		height: 32px;
+
+		&--info {
+			background-color: #e1e1e1;
+		}
+	}
+}
+
+.issues-loader {
+	display: flex;
+	align-items: center;
+	margin-top: 14px;
+
+	&__icon {
+		width: 24px;
+		height: 24px;
+		background-color: #fee380;
+		border-radius: 5px;
+	}
+
+	&__mid {
+		width: 50%;
+		margin-left: 33px;
+
+		p {
+			margin: 3px;
+		}
+	}
+}

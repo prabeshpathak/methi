@@ -56,7 +56,7 @@ const SignIn = ({ isAuthenticated, login }) => {
     else return "Continue";
   };
   return (
-    <div className="signin">
+    <div className="signin" id="signIn">
       <h1>
         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> METHI
       </h1>
@@ -72,6 +72,7 @@ const SignIn = ({ isAuthenticated, login }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          id="email"
         />
         {!formModeLogin && (
           <input
@@ -82,6 +83,7 @@ const SignIn = ({ isAuthenticated, login }) => {
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             placeholder="Full name"
+            id="fullName"
           />
         )}
         {formExpanded && (
@@ -93,9 +95,10 @@ const SignIn = ({ isAuthenticated, login }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            id="password"
           />
         )}
-        <button className="btn signin__submit" type="submit">
+        <button className="btn signin__submit" type="submit" id="continue">
           {getBtnText()}
         </button>
 
@@ -104,6 +107,7 @@ const SignIn = ({ isAuthenticated, login }) => {
           type="button"
           disabled={disabled}
           className="btn btn-link"
+          id="signUpLink"
         >
           {formModeLogin
             ? "Sign up for an account"
