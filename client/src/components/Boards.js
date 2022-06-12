@@ -141,7 +141,7 @@ const Boards = ({ match, user, setNotification }) => {
         </div>
         <h2>{sprint ? sprint.title : `${project?.key ?? "Sprint"} board`}</h2>
         <div className="d-flex mt-3">
-          <div className="boards__container">
+          <div className="boards__container" id="boards">
             {!loading && (
               <p className="text-secondary">
                 TO DO {`${issues["to do"].length} ISSUES`}

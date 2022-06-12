@@ -66,7 +66,7 @@ const Nav = ({
     >
       <div className="container">
         <div className="d-flex align-items-center">
-          <Link to="/">
+          <Link to="/home">
             <div>
               <div className="nav__logo">
                 <img
@@ -101,7 +101,7 @@ const Nav = ({
                       <h6>Software project</h6>
                     </Link>
                   ))}
-                  <Link className="createProjectBtn" to="/projects/create">
+                  <Link className="createProjectBtn" if="createProjectBtn" to="/projects/create">
                     Create project
                   </Link>
                 </div>

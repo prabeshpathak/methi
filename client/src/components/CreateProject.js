@@ -63,6 +63,7 @@ const CreateProject = () => {
             disabled={formPosting}
             className="btn btn-primary"
             type="submit"
+            id="CreateProjectButton"
           >
             Create project
           </button>

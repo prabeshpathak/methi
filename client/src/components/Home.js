@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import api from "../axios";
 import { ProjectsLoader } from "./ProjectsLoader";
 import { connect } from "react-redux";
+import '././styles/_home.scss';
 
 async function fetchData() {
 	const data = {};
 	let response = await api.get("/projects");
 	data.projects = response.data;
-	response = await api.get("/issues");
-	data.issues = response.data;
 	return data;
 }
 
@@ -21,7 +20,6 @@ const Home = () => {
 		(async () => {
 			const data = await fetchData();
 			setProjects(data.projects);
-			setIssues(data.issues);
 			setLoading(false);
 		})();
 	}, []);
@@ -61,4 +59,4 @@ const mapStateToProps = (state) => ({
 	user: state.reducer.user,
 });
 
-export default connect(mapStateToProps, { issueCreatedDone, setNotification })(Home);
+export default connect(mapStateToProps)(Home);
