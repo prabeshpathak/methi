@@ -67,4 +67,9 @@ const Roadmap = ({ match, created, user, issueCreatedDone }) => {
   );
 };
 
-export default Roadmap;
+const mapStateToProps = (state) => ({
+  created: state.reducer.created,
+  user: state.reducer.user,
+});
+
+export default connect(mapStateToProps, { issueCreatedDone })(Roadmap);
