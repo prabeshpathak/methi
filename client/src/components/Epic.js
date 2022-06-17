@@ -24,6 +24,20 @@ const Epic = ({ epic, isLead, created, issueCreatedDone }) => {
         // eslint-disable-next-line
     }, [created]);
 
+    useEffect(() => {
+        function handleEscape(e) {
+            if (e.key === "Escape")
+                setCreateIssue(false);
+        }
+        window.addEventListener("keydown", handleEscape)
+        return () => window.removeEventListener("keydown", handleEscape)
+    }, [])
+
+
+    useEffect(() => {
+        formRef.current?.focus()
+    }, [formRef, focus])
+
 
     return (
         <div className='epic'>
