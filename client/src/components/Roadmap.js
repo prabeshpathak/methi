@@ -6,6 +6,7 @@ import Epic from "./Epic";
 import Sidebar from "./Sidebar";
 import SprintIssueForm from "./SprintIssueForm";
 import { issueCreatedDone } from "../state/actions";
+import "./styles/_roadmap.scss";
 
 async function fetchData(id) {
   return {
