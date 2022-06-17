@@ -46,6 +46,17 @@ const Epic = ({ epic, isLead, created, issueCreatedDone }) => {
         return done === 0 ? 0 : Math.floor((done * 100) / issues.length)
     }
 
+    const getStatusClass = (issueStatus) => {
+        switch (issueStatus) {
+            case "in progress":
+                return "sIssueStatus--inprogress"
+            case "done":
+                return "sIssueStatus--done"
+            default:
+                return "sIssueStatus--todo"
+        }
+    }
+
 
     return (
         <div className='epic'>
