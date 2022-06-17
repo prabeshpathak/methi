@@ -15,6 +15,15 @@ const Epic = ({ epic, isLead, created, issueCreatedDone }) => {
     const [focus, setFocus] = useState(false)
     const formRef = useRef()
 
+    useEffect(() => {
+        if (created)
+            if (created.project._id === project && created.epic === _id) {
+                setIssues((prevIssues) => [...prevIssues, created]);
+                issueCreatedDone();
+            }
+        // eslint-disable-next-line
+    }, [created]);
+
 
     return (
         <div className='epic'>
