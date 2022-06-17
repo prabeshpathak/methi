@@ -7,6 +7,13 @@ import Sidebar from "./Sidebar";
 import SprintIssueForm from "./SprintIssueForm";
 import { issueCreatedDone } from "../state/actions";
 
+async function fetchData(id) {
+  return {
+    project: await api.get(`/projects/${id}`),
+    issues: await api.get(`/issues/roadmap/${id}`),
+  };
+}
+
 const Roadmap = ({ match, created, user, issueCreatedDone }) => {
   const [project, setProject] = useState(null);
   const [issues, setIssues] = useState([]);
@@ -14,13 +21,24 @@ const Roadmap = ({ match, created, user, issueCreatedDone }) => {
   const [createIssue, setCreateIssue] = useState(false);
 
   useEffect(() => {
-    if (user) {
-    }
+    if (user)
+      (async function () {
+        const response = await fetchData(match.params.id);
+        setProject(response.project.data);
+        if (response.project.data.lead._id === user._id) setIsLead(true);
+        setIssues(response.issues.data);
+      })();
   }, [match.params.id, user]);
 
   useEffect(() => {
-    if (created) {
-    }
+    if (created)
+      if (
+        created.project._id === match.params.id &&
+        created.issueType === "Epic"
+      ) {
+        setIssues((prevIssues) => [...prevIssues, created]);
+        issueCreatedDone();
+      }
     // eslint-disable-next-line
   }, [created]);
 
