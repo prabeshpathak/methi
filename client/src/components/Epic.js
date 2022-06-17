@@ -38,6 +38,14 @@ const Epic = ({ epic, isLead, created, issueCreatedDone }) => {
         formRef.current?.focus()
     }, [formRef, focus])
 
+    const getDoneIssues = () => {
+        let done = 0;
+        for (let i = 0; i < issues.length; i++)
+            if (issues[i].issueStatus === "done")
+                done++
+        return done === 0 ? 0 : Math.floor((done * 100) / issues.length)
+    }
+
 
     return (
         <div className='epic'>
