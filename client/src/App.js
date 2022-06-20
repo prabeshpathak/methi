@@ -10,7 +10,9 @@ import { retrieveSession } from "./state/actions";
 import PrivateRoute from "./components/PrivateRoute";
 import Team from "./components/Team";
 import About from "./components/About";
-import Boards from './components/Boards';
+import Boards from "./components/Boards";
+import Backlog from "./components/Backlog";
+import Roadmap from "./components/Roadmap";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -41,6 +43,16 @@ function App({ retrieveSession }) {
           <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
           <PrivateRoute exact path="/teams/create" component={CreateTeam} />
           <PrivateRoute exact path="/teams/:id" component={Team} />
+          <PrivateRoute
+            exact
+            path="/projects/roadmap/:id"
+            component={Roadmap}
+          />
+          <PrivateRoute
+            exact
+            path="/projects/backlog/:id"
+            component={Backlog}
+          />
         </Switch>
       </div>
     </div>

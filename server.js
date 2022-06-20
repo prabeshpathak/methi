@@ -23,10 +23,41 @@ if (process.env.NODE_ENV == "development") {
     });
 }
 
+if (process.env.NODE_ENV == "test") {
+  mongoose
+    .connect(process.env.MONGODB_URI_TEST, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("Connection For Testing");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  async function dbClean() {
+    const db = await mongoose.connection;
+
+    let collections = db.collections;
+
+    for (let collection in collections) {
+      await collections[collection].deleteMany();
+    }
+    console.log("All DB Cleared");
+  }
+
+  dbClean();
+}
+
 // Routes
-app.use('/api/signin', require("./api/signin"))
-app.use('/api/projects', require("./api/project"))
-app.use('/api/teams', require("./api/team"))
+app.use("/api/home", require("./api/home"));
+app.use("/api/signin", require("./api/signIn"));
+app.use("/api/projects", require("./api/project"));
+app.use("/api/issues", require("./api/issue"));
+app.use("/api/sprints", require("./api/sprint"));
+app.use("/api/teams", require("./api/team"));
+app.use("/api/comments", require("./api/comment"));
 app.use("/api/messages", require("./api/message"));
 
 if (process.env.NODE_ENV == "production") {

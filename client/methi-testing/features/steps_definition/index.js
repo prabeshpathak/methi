@@ -36,8 +36,11 @@ Given("Test login functionality", { timeout: 30000 }, async function () {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("http://localhost:3000/signin");
 
+<<<<<<< HEAD
     await driver.findElement(By.id("getFormBtn")).click();
     await driver.sleep(delay);
+=======
+>>>>>>> epicissue
 
     await driver.findElement(By.id("email")).sendKeys("anishkhadka1111@gmail.com");
     await driver.sleep(delay);
@@ -51,4 +54,44 @@ Given("Test login functionality", { timeout: 30000 }, async function () {
     await driver.findElement(By.id("continue")).click();
     await driver.wait(until.elementLocated(By.id("home")), 30000);
     // await driver.quit();
+<<<<<<< HEAD
+=======
+});
+
+Given("Test create Team functionality", { timeout: 30000 }, async function () {
+
+    let driver = await new Builder().forBrowser("chrome").build();
+    await driver.get("http://localhost:3000/signin");
+
+
+    await driver.findElement(By.id("email")).sendKeys("anishkhadka1111@gmail.com");
+    await driver.sleep(delay);
+
+    await driver.findElement(By.id("continue")).click();
+    await driver.sleep(delay);
+
+    await driver.findElement(By.id("password")).sendKeys("12345678");
+    await driver.sleep(delay);
+
+    await driver.findElement(By.id("createProjectBtn")).click();
+    await driver.sleep(delay);
+    
+
+    await driver.findElement(By.id("projectName")).sendKeys("Test Project");
+    await driver.sleep(delay);
+
+    await driver.findElement(By.id("projectKey")).sendKeys("1122");
+    await driver.sleep(delay);
+    
+    
+    await driver.findElement(By.id("CreateProjectButton")).click();
+    await driver.sleep(delay);
+
+    await driver.findElement(By.id("continue")).click();
+    await driver.wait(until.elementLocated(By.id("boards")), 30000);
+
+    
+
+
+>>>>>>> epicissue
 });

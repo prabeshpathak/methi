@@ -1,0 +1,97 @@
+.roadmap {
+  min-width: 500px;
+
+  &__container {
+    border: 1px solid rgb(193, 199, 208);
+    border-radius: 5px;
+    margin-top: 20px;
+
+    .header {
+      border-bottom: 1px solid rgb(193, 199, 208);
+      background-color: rgb(244, 245, 247);
+      padding: 16px;
+    }
+  }
+
+  &__issues {
+    padding: 13px;
+
+    .epic {
+      &__header {
+        display: flex;
+        align-items: center;
+        border-radius: 3px;
+        padding: 4px;
+
+        &:hover {
+          background-color: #c9c9ca;
+        }
+        &:hover > .epic__btn {
+          opacity: 1;
+        }
+
+        .progress-container {
+          min-width: 300px;
+        }
+
+        .progress-bar {
+          width: 100%;
+          height: 10px;
+          background-color: rgb(193, 199, 208);
+          border-radius: 2px;
+          margin-top: 2px;
+
+          &__inner {
+            height: 100%;
+            background-color: rgb(54, 179, 126);
+            border-radius: 2px;
+          }
+        }
+      }
+
+      &__btn {
+        flex: 1;
+        text-align: end;
+        opacity: 0;
+        transition: all 0.3s;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        display: flex;
+        align-items: center;
+      }
+
+      &__issues {
+        padding-left: 28px;
+        margin: 6px 0;
+        a {
+          text-align: left;
+          padding: 3px;
+          border-radius: 3px;
+          justify-content: space-between;
+
+          p {
+            margin: 0;
+            margin-left: 7px;
+            font-weight: 600;
+          }
+
+          &:hover {
+            background-color: #c9c9ca;
+          }
+        }
+      }
+
+      i {
+        cursor: pointer;
+      }
+
+      h3 {
+        font-size: 21px;
+        margin: 0;
+      }
+    }
+  }
+}
