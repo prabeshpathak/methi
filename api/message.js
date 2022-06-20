@@ -3,7 +3,7 @@ const { canMessage, createMessage } = require("../controllers/message");
 
 const router = require("express").Router();
 
-// Create message
+// @route   POST api/message - create a message in a team
 router.post("/create", authenticateToken, async (req, res) => {
   try {
     if (await canMessage(req.body.team, req.user._id))

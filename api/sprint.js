@@ -1,3 +1,4 @@
+// importing modules
 const { authenticateToken, authorizations } = require("../controllers/auth");
 const {
   activeSprintIssues,
@@ -15,7 +16,7 @@ const {
 
 const router = require("express").Router();
 
-// Create new sprint
+// @route   POST api/sprint - create a sprint
 router.post("/create", authenticateToken, authorizations, async (req, res) => {
   try {
     const sprint = await createSprint(req.body);
@@ -25,7 +26,7 @@ router.post("/create", authenticateToken, authorizations, async (req, res) => {
   }
 });
 
-// Get all sprints belonging to a project
+// @route   GET api/sprint - get all sprints belonging to a project
 router.get("/project/:id", authenticateToken, async (req, res) => {
   try {
     const sprints = await getSprints(req.params.id);
@@ -35,7 +36,7 @@ router.get("/project/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Get active sprint and issues
+// @route   GET api/sprint - get all active sprints and their issues
 router.get("/active/:id", authenticateToken, async (req, res) => {
   try {
     const sprint = await getActiveSprint(req.params.id);
@@ -48,7 +49,7 @@ router.get("/active/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Update a sprint
+// @route   GET api/sprint - get all completed sprints and their issues
 router.patch("/:id", authenticateToken, authorizations, async (req, res) => {
   try {
     await updateSprint(req.params.id, req.body);
@@ -58,7 +59,7 @@ router.patch("/:id", authenticateToken, authorizations, async (req, res) => {
   }
 });
 
-// Complete and delete a sprint and relevant issues that are marked done
+// @route   DELETE api/sprint/:id - Complete and delete a sprint and relevant issues that are marked done
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const sprint = await getSprint(req.params.id);
