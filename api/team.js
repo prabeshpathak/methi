@@ -1,3 +1,4 @@
+// importing modules
 const { authenticateToken } = require("../controllers/auth");
 const { canMessage } = require("../controllers/message");
 const {
@@ -13,7 +14,7 @@ const {
 
 const router = require("express").Router();
 
-// Get team details
+// @route GET api/team - get all teams details
 router.get("/details/:id", authenticateToken, async (req, res) => {
   try {
     if (await canMessage(req.params.id, req.user._id))
@@ -24,7 +25,7 @@ router.get("/details/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Search for user
+// @route GET api/:team - search for teams using the search query
 router.get("/search/:query/:team", authenticateToken, async (req, res) => {
   try {
     res.send(await search(req.params.query, req.params.team));
@@ -33,7 +34,7 @@ router.get("/search/:query/:team", authenticateToken, async (req, res) => {
   }
 });
 
-// Get relevant teams
+// @route GET api/team - get all relevant teams
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const team = await getTeams(req.user._id);
@@ -43,7 +44,7 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Update team
+// @route PATCH api/team/:id - update a team
 router.patch("/:id", authenticateToken, async (req, res) => {
   try {
     await updateTeam(req.params.id, req.body);
@@ -53,7 +54,7 @@ router.patch("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Delete team
+// @route DELETE api/team/:id - delete a team
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const { lead } = await getTeam(req.params.id);
@@ -67,7 +68,7 @@ router.delete("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Create new team
+// @route POST api/team/create - create a new team
 router.post("/create", authenticateToken, async (req, res) => {
   try {
     const team = await createTeam({
@@ -85,7 +86,7 @@ router.post("/create", authenticateToken, async (req, res) => {
   }
 });
 
-// Add member
+// @route POST api/team/:id/add - add a member to a team
 router.post("/add", authenticateToken, async (req, res) => {
   try {
     res.send(await addToTeam(req.body, req.user._id));
@@ -94,7 +95,7 @@ router.post("/add", authenticateToken, async (req, res) => {
   }
 });
 
-// Remove member
+// @route POST api/team/:id/remove - remove a member from a team
 router.post("/remove", authenticateToken, async (req, res) => {
   try {
     await removeFromTeam(req.body, req.user._id);

@@ -1,3 +1,4 @@
+// importing modules
 const {
   registerUser,
   generateAccessToken,
@@ -9,7 +10,7 @@ const {
 
 const router = require("express").Router();
 
-// Get user
+// @route   GET api/user - get the user
 router.get("/user", authenticateToken, async (req, res) => {
   try {
     res.send(await getUser(req.user._id));
@@ -18,7 +19,7 @@ router.get("/user", authenticateToken, async (req, res) => {
   }
 });
 
-// Update user
+// @route   PUT api/user - update the user
 router.patch("/user", authenticateToken, async (req, res) => {
   try {
     await updateUser(req.user._id, req.body);
@@ -30,7 +31,7 @@ router.patch("/user", authenticateToken, async (req, res) => {
   }
 });
 
-// Register new user
+// @route   POST api/auth/register - register a new user
 router.post("/register", async (req, res) => {
   try {
     const user = await registerUser(req.body);
@@ -43,7 +44,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Register Login user
+// @route   POST api/auth/login - login a user
 router.post("/login", async (req, res) => {
   try {
     const token = await login(req.body);

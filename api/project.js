@@ -1,3 +1,4 @@
+// importing modules
 const { authenticateToken } = require("../controllers/auth");
 const {
   createProject,
@@ -12,7 +13,7 @@ const { getTeamAssignees } = require("../controllers/team");
 
 const router = require("express").Router();
 
-// Create new project
+// @route   POST api/project - create a project
 router.post("/create", authenticateToken, async (req, res) => {
   try {
     const project = await createProject({ ...req.body, lead: req.user._id });
@@ -22,7 +23,7 @@ router.post("/create", authenticateToken, async (req, res) => {
   }
 });
 
-// Get projects with lead as the user
+// @route   GET api/project - get all projects with the user as a lead
 router.get("/lead", authenticateToken, async (req, res) => {
   try {
     const projects = await getLeadProjects(req.user._id);
@@ -32,7 +33,7 @@ router.get("/lead", authenticateToken, async (req, res) => {
   }
 });
 
-// Get team members relevant to user
+// @route   GET api/project/assignees - get all members related to a project as assignees
 router.get("/assignees", authenticateToken, async (req, res) => {
   try {
     res.send(await getTeamAssignees(req.user._id));
@@ -41,7 +42,7 @@ router.get("/assignees", authenticateToken, async (req, res) => {
   }
 });
 
-// Get project
+// @route   GET api/project - get all projects
 router.get("/:id", authenticateToken, async (req, res) => {
   try {
     res.send(await getProject(req.params.id));
@@ -50,7 +51,7 @@ router.get("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Get all projects relevant to user
+// @route   GET api/project - get all projects related to a user
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const projects = await getProjects(req.user._id);
@@ -60,7 +61,7 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-// Update project
+// @route  PUT api/project - update a project
 router.patch("/:id", authenticateToken, async (req, res) => {
   try {
     if (await isProjectLead(req.params.id, req.user._id))
@@ -71,7 +72,7 @@ router.patch("/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Delete project
+// @route   DELETE api/project - delete a project
 router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     if (await isProjectLead(req.params.id, req.user._id)) {
