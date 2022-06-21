@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Create a schema for the team model field type [String, Number, Date, Buffer, Boolean, ObjectId, Array]
 const teamSchema = mongoose.Schema({
   title: {
     type: String,
