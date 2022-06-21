@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Create a schema for the issue model field type [String, Number, Date, Buffer, Boolean, ObjectId, Array]
 const issueSchema = mongoose.Schema(
   {
     summary: {
@@ -58,6 +59,5 @@ issueSchema.pre("findOneAndUpdate", async function (next) {
   }
   next();
 });
-
 
 module.exports = mongoose.model("IssueSchema", issueSchema);
