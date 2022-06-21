@@ -32,12 +32,13 @@ describe("User Test", () => {
     });
   });
 
-  // //   //get one user
+  // the code below is for getting user
   it("get/user--> get any one user", async () => {
     const pr = await userSchema.findOne({ email: "test@gmail.com" });
     expect(1).toBe(1);
   });
 
+  // the code below is for updating user
   it("to test the update", async () => {
     return await userSchema
       .findOneAndUpdate(
@@ -49,10 +50,4 @@ describe("User Test", () => {
         expect(val.fullName).toEqual("new test");
       });
   });
-
-  //     // the code below is for delete testing
-  // it("Deleting new added", async () => {
-  //   const status = await userSchema.deleteOne({ email: "testss@gmail.com" });
-  //   expect(status.ok).toBe(1);
-  // });
 });
