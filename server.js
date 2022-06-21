@@ -1,10 +1,12 @@
+// importing the required module
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
-// const routes = require("./routes");
-
+require("dotenv").config();
 const app = express();
+
+// middleware
 app.use(express.json());
 app.use(cors());
 
@@ -16,7 +18,10 @@ if (process.env.NODE_ENV == "development") {
       useUnifiedTopology: true,
     })
     .then(() => {
-      console.log("Connection with DB established");
+      const port = process.env.PORT || 8000;
+      app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -30,7 +35,10 @@ if (process.env.NODE_ENV == "test") {
       useUnifiedTopology: true,
     })
     .then(() => {
-      console.log("Connection For Testing");
+      const port = process.env.PORT || 8000;
+      app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -50,7 +58,7 @@ if (process.env.NODE_ENV == "test") {
   dbClean();
 }
 
-// Routes
+// importing the routes
 app.use("/api/home", require("./api/home"));
 app.use("/api/signin", require("./api/signIn"));
 app.use("/api/projects", require("./api/project"));
@@ -66,6 +74,3 @@ if (process.env.NODE_ENV == "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-const port = process.env.PORT || 8000;
-app.listen(port, () => console.log("listening on " + port));
