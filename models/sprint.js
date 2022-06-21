@@ -21,6 +21,7 @@ const sprintSchema = mongoose.Schema({
   goal: String,
 });
 
+// remove the issue whose status is done before the document is saved to the database (pre) mongoose middleware function
 sprintSchema.pre("findOneAndDelete", async function (next) {
   const sid = this.getFilter()["_id"];
   Issue.find({ sprint: sid }, (err, issues) => {

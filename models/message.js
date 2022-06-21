@@ -22,6 +22,7 @@ const messageSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+// pre save hook to add the message to the team's messages as a new
 messageSchema.pre("save", async function (next) {
   if (this.isNew) {
     const team = await Team.findById(this.team);

@@ -21,6 +21,7 @@ const projectSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+//Mongoose hook to delete the project id before adding it to the database. This is to prevent the project id from being added to the database. 
 projectSchema.pre("findOneAndDelete", async function (next) {
   const pid = this.getFilter()["_id"];
   await Issue.deleteMany({ project: pid });
