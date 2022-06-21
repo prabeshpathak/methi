@@ -14,6 +14,8 @@ exports.getUser = async (id) => await User.findById(id);
  * @param {number} uid - user id
  * @param {string} data - data to be updated
  * @returns {User} updated user
+ * @description - update the user data
+ * @throws - if the user is not found
  */
 exports.updateUser = async (uid, data) => {
   const u = await User.findByIdAndUpdate(uid, data);
@@ -25,6 +27,8 @@ exports.updateUser = async (uid, data) => {
  * @param {string} email - user email
  * @param {string} password - user password
  * @returns {object} user - user object
+ * @description - find the user by email and compare the password
+ * @throws - if the user is not found or the password is incorrect
  */
 exports.login = async ({ email, password }) => {
   // find user by email and select the respective password
@@ -51,6 +55,8 @@ exports.generateAccessToken = (user) =>
  * @param {express.Response} res - response object
  * @param {express.NextFunction} next - next function
  * @returns {object} - return the verified user object
+ * @description - verify the token and return the user object
+ * @throws - if the token is not verified
  */
 exports.authenticateToken = (req, res, next) => {
   // get the token from the header and check if it is valid
@@ -70,6 +76,8 @@ exports.authenticateToken = (req, res, next) => {
  * @param {express.Response} res - response object
  * @param {express.NextFunction} next - next function
  * @returns {express.Response} - return the response object where user can be authorized to access the project
+ * @description - check if the user is a lead of the project
+   @throws {Error} - throws an error if the user is not authorized to access the project
  */
 
 exports.authorizations = async (req, res, next) => {
