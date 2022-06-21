@@ -46,7 +46,7 @@ exports.deleteComment = async (cid) => await Comment.findByIdAndDelete(cid);
  *
  * @param {number} iId - issue id of the project
  * @param {string} user  - user id
- * @returns {boolean,Issue} - true if the user has permission to comment on the issue
+ * @returns {boolean,Issue{}} - true if the user has permission to comment on the issue
  * @description - check if the user has permission to comment
  * @throws - if the user is not found
  */
