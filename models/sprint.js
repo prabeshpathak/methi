@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Issue = require("./issue");
 
+// Create a schema for the sprint model field type [String, Number, Date, Buffer, Boolean, ObjectId, Array]
 const sprintSchema = mongoose.Schema({
   title: {
     type: String,
