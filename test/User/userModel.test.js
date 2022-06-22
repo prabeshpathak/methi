@@ -35,7 +35,7 @@ describe("User Test", () => {
   // the code below is for getting user
   it("get/user--> get any one user", async () => {
     const pr = await userSchema.findOne({ email: "test@gmail.com" });
-    expect(pr.email).toBe("test@gmail.com");
+    expect(pr.email).toEqual("test@gmail.com");
   });
 
   // the code below is for updating user
