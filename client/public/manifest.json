@@ -2,7 +2,4 @@
   "short_name": "Methi",
   "name": "A Project Management Tool for Developers",
   "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
 }

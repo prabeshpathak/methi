@@ -1,18 +1,25 @@
+import './style.scss';
 import { useLocation, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
+import Landing from "./components/Landing";
 import SignIn from "./components/SignIn";
 import Home from "./components/Home";
-import CreateProject from "./components/CreateProject";
-import CreateTeam from "./components/CreateTeam";
+import PrivateRoute from "./components/PrivateRoute";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { retrieveSession } from "./state/actions";
-import PrivateRoute from "./components/PrivateRoute";
-import Team from "./components/Team";
-import About from "./components/About";
-import Boards from "./components/Boards";
+import CreateProject from "./components/CreateProject";
 import Backlog from "./components/Backlog";
+import Create from "./components/Create";
+import Boards from "./components/Boards";
+import Issue from "./components/Issue";
+import Team from "./components/Team";
+import CreateTeam from "./components/CreateTeam";
+import ProjectSettings from "./components/ProjectSettings";
+import Profile from "./components/Profile";
+import Notification from "./components/Notification";
 import Roadmap from "./components/Roadmap";
+import About from "./components/About";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -27,22 +34,29 @@ function App({ retrieveSession }) {
         navModals={navModals}
         setNavModals={setNavModals}
       />
+      {formOpen && <Create setFormOpen={setFormOpen} />}
       <div
         className="nav-padding"
         onClick={() => setNavModals({ projects: false, teams: false })}
       >
+        <Notification />
         <Switch location={location} key={location.pathname}>
+          <Route exact path="/" component={Landing} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/about" component={About} />
           <PrivateRoute exact path="/home" component={Home} />
+          <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute
             exact
             path="/projects/create"
             component={CreateProject}
           />
+          <PrivateRoute
+            exact
+            path="/projects/backlog/:id"
+            component={Backlog}
+          />
           <PrivateRoute exact path="/projects/boards/:id" component={Boards} />
-          <PrivateRoute exact path="/teams/create" component={CreateTeam} />
-          <PrivateRoute exact path="/teams/:id" component={Team} />
           <PrivateRoute
             exact
             path="/projects/roadmap/:id"
@@ -50,9 +64,12 @@ function App({ retrieveSession }) {
           />
           <PrivateRoute
             exact
-            path="/projects/backlog/:id"
-            component={Backlog}
+            path="/projects/settings/:id"
+            component={ProjectSettings}
           />
+          <PrivateRoute exact path="/teams/create" component={CreateTeam} />
+          <PrivateRoute exact path="/teams/:id" component={Team} />
+          <PrivateRoute exact path="/issues/:id" component={Issue} />
         </Switch>
       </div>
     </div>
