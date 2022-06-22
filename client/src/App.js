@@ -1,4 +1,4 @@
-import './style.scss';
+import "./style.scss";
 import { useLocation, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Landing from "./components/Landing";
@@ -20,6 +20,7 @@ import Profile from "./components/Profile";
 import Notification from "./components/Notification";
 import Roadmap from "./components/Roadmap";
 import About from "./components/About";
+import Jitsu from "./components/Jitsu";
 
 function App({ retrieveSession }) {
   const [formOpen, setFormOpen] = useState(false);
@@ -67,6 +68,7 @@ function App({ retrieveSession }) {
             path="/projects/settings/:id"
             component={ProjectSettings}
           />
+          <PrivateRoute exact path="/jitsu" component={Jitsu} />
           <PrivateRoute exact path="/teams/create" component={CreateTeam} />
           <PrivateRoute exact path="/teams/:id" component={Team} />
           <PrivateRoute exact path="/issues/:id" component={Issue} />
