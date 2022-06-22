@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import api from "../axios";
 import Sidebar from "./Sidebar";
+import Icon from "./svg/Icon";
 import { setNotification } from "../state/actions";
-import "./styles/_boards.scss";
 
 async function fetchData(id) {
   const { data } = await api.get(`/sprints/active/${id}`);
@@ -86,7 +86,7 @@ const Boards = ({ match, user, setNotification }) => {
               onMouseDown={(e) => e.stopPropagation()}
             >
               <img
-                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80"
+                src={`${process.env.PUBLIC_URL}/sprint-completed.PNG`}
                 alt="sprint completed"
               />
               <div className="p-4">
@@ -141,7 +141,7 @@ const Boards = ({ match, user, setNotification }) => {
         </div>
         <h2>{sprint ? sprint.title : `${project?.key ?? "Sprint"} board`}</h2>
         <div className="d-flex mt-3">
-          <div className="boards__container" id="boards">
+          <div className="boards__container">
             {!loading && (
               <p className="text-secondary">
                 TO DO {`${issues["to do"].length} ISSUES`}
@@ -157,6 +157,7 @@ const Boards = ({ match, user, setNotification }) => {
                 >
                   <p>{i.summary}</p>
                   <div className="d-flex justify-content-between align-items-center">
+                    <Icon icon={i.issueType} size={16} />
                     <div className="comment__image">
                       {i.assignee
                         ? i.assignee.fullName
@@ -173,7 +174,7 @@ const Boards = ({ match, user, setNotification }) => {
                 <img
                   className="mt-3"
                   height={128}
-                  src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80"
+                  src="/nosprint.png"
                   alt="no sprint"
                 />
                 <p className="text-center mt-1">
@@ -210,6 +211,7 @@ const Boards = ({ match, user, setNotification }) => {
                 >
                   <p>{i.summary}</p>
                   <div className="d-flex justify-content-between align-items-center">
+                    <Icon icon={i.issueType} size={16} />
                     <div className="comment__image">
                       {i.assignee
                         ? i.assignee.fullName
@@ -241,6 +243,7 @@ const Boards = ({ match, user, setNotification }) => {
                 >
                   <p>{i.summary}</p>
                   <div className="d-flex justify-content-between align-items-center">
+                    <Icon icon={i.issueType} size={16} />
                     <div className="comment__image">
                       {i.assignee
                         ? i.assignee.fullName
