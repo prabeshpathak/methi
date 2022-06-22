@@ -34,4 +34,23 @@ describe("Testing container for Sprint", () => {
       expect(pro_ret.title).toEqual("Team Test");
     });
   });
+
+  // the code below is for get testing
+  it("Getting Sprint", async () => {
+    const teams = await sprintSchema.findOne({ title: "Team Test" });
+    expect(teams.title).toEqual("Team Test");
+  });
+
+  // the code below is for updating sprint
+  it("Updating Sprint", async () => {
+    return await sprintSchema
+      .findOneAndUpdate(
+        { title: "Team Test" },
+        { $set: { goal: "new test" } },
+        { new: true }
+      )
+      .then((val) => {
+        expect(val.goal).toEqual("new test");
+      });
+  });
 });
