@@ -1,7 +1,7 @@
 const request = require("supertest");
-const app = require("../testingServer");
+const app = require("../../testingServer");
 const mongoose = require("mongoose");
-const User = require("../models/user");
+const User = require("../../models/user");
 
 const userLoginTest1 = {
   email: "testing1@gmail.com",
