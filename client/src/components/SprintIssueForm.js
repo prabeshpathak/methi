@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Icon from "./svg/Icon";
 import Loader from "react-loader-spinner";
 import api from "../axios";
 import { issueCreated } from "../state/actions";
@@ -42,6 +43,7 @@ const SprintIssueForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
+      <Icon size={20} icon={data.issueType} />
       <select
         disabled={issueType === "Epic"}
         value={data.issueType}

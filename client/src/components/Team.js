@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import api from "../axios";
 import TeamLoader from "./TeamLoader";
-import "./styles/_team.scss";
 
 const Team = ({ match, user }) => {
   const [team, setTeam] = useState(null);
@@ -254,7 +253,7 @@ const Team = ({ match, user }) => {
         </div>
       )}
       <img
-        src={`${process.env.PUBLIC_URL}/teambg.PNG`}
+        src={`${process.env.PUBLIC_URL}/teambg.png`}
         className="team__header"
         alt="teambackground"
       />
