@@ -10,5 +10,6 @@ app.use(cors());
 
 // Routes
 app.use("/api/signin", require("./api/signin"));
+app.use("/api/teams", require("./api/team"));
 
 module.exports = app;
