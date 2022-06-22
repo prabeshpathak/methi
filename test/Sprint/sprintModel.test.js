@@ -18,4 +18,20 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe("Testing container for Team", () => {});
+describe("Testing container for Sprint", () => {
+  // the code below is for insert testing
+  it("Adding New Sprint", () => {
+    const sprint = new sprintSchema();
+
+    sprint.project = "4edd40c86762e0fb12000001";
+    sprint.isActive = true;
+    sprint.title = "Team Test";
+    sprint.startDate = new Date();
+    sprint.endDate = new Date();
+    sprint.goal = "test description";
+
+    return sprint.save().then((pro_ret) => {
+      expect(pro_ret.title).toEqual("Team Test");
+    });
+  });
+});
