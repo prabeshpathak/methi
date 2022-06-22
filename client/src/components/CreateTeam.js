@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import api from "../axios";
 import { Redirect } from "react-router-dom";
-import "./styles/_createTeam.scss";
+import { issueCreated } from "../state/actions";
 
-const CreateTeam = ({ user}) => {
+const CreateTeam = ({ user, issueCreated }) => {
   const [title, setTitle] = useState("");
   const [newTeam, setNewTeam] = useState(null);
   const [members, setMembers] = useState([]);
@@ -18,6 +18,7 @@ const CreateTeam = ({ user}) => {
     setFormPosting(true);
     try {
       const { data } = await api.post("/teams/create", { title, members });
+      issueCreated(data);
       setNewTeam(data._id);
     } catch (error) {
       console.log(error.response);
@@ -67,7 +68,7 @@ const CreateTeam = ({ user}) => {
         <h2>Start a new team</h2>
         <div className="create-team__main">
           <img
-            src={`https://images.unsplash.com/photo-1630446012689-9916791c866b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80`}
+            src={`${process.env.PUBLIC_URL}/create-team.jpg`}
             alt="createteam"
           />
           <form onSubmit={handleSubmit}>
@@ -160,4 +161,4 @@ const mapStateToProps = (state) => ({
   user: state.reducer.user,
 });
 
-export default connect(mapStateToProps)(CreateTeam);
+export default connect(mapStateToProps, { issueCreated })(CreateTeam);
