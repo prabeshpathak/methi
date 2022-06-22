@@ -86,7 +86,7 @@ const Boards = ({ match, user, setNotification }) => {
               onMouseDown={(e) => e.stopPropagation()}
             >
               <img
-                src={`${process.env.PUBLIC_URL}/sprint-completed.JPG`}
+                src={`${process.env.PUBLIC_URL}/sprint-completed.jpg`}
                 alt="sprint completed"
               />
               <div className="p-4">
@@ -174,7 +174,7 @@ const Boards = ({ match, user, setNotification }) => {
                 <img
                   className="mt-3"
                   height={128}
-                  src="/nosprint.png"
+                  src={`${process.env.PUBLIC_URL}/nosprint.jpg`}
                   alt="no sprint"
                 />
                 <p className="text-center mt-1">
