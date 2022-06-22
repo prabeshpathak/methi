@@ -36,4 +36,23 @@ describe("Testing container for Issue", () => {
       expect(pro_ret.summary).toEqual("Team Test");
     });
   });
+
+  // the code below is for get testing
+  it("Getting Issue", async () => {
+    const issue = await issueSchema.findOne({ title: "Team Test" });
+    expect(issue.summary).toEqual("Team Test");
+  });
+
+  // the code below is for updating Issue
+  it("Updating Issue", async () => {
+    return await issueSchema
+      .findOneAndUpdate(
+        { summary: "Team Test" },
+        { $set: { issueType: "new test" } },
+        { new: true }
+      )
+      .then((val) => {
+        expect(val.issueType).toEqual("new test");
+      });
+  });
 });
