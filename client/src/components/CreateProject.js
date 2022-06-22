@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import api from "../axios";
-import "./styles/_createProject.scss";
+import { issueCreated } from "../state/actions";
 
-const CreateProject = () => {
+const CreateProject = ({ issueCreated }) => {
   const [formdata, setFormdata] = useState({
     title: "",
     key: "",
@@ -17,6 +17,7 @@ const CreateProject = () => {
     setFormPosting(true);
     try {
       const { data } = await api.post("/projects/create", formdata);
+      issueCreated(data);
       setNewProject(data._id);
     } catch (error) {
       console.log(error.response);
@@ -63,7 +64,6 @@ const CreateProject = () => {
             disabled={formPosting}
             className="btn btn-primary"
             type="submit"
-            id="CreateProjectButton"
           >
             Create project
           </button>
@@ -71,10 +71,7 @@ const CreateProject = () => {
         <div className="create-project__info">
           <h5>Template</h5>
           <div className="d-flex align-items-center">
-            <img
-              src={`https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80`}
-              alt="scrum"
-            />
+            <img src={`${process.env.PUBLIC_URL}/nosprint.jpg`} alt="scrum" />
             <div className="ms-2">
               <p>
                 <strong>Scrum</strong>
@@ -87,10 +84,7 @@ const CreateProject = () => {
           </div>
           <h5 className="mt-4">Type</h5>
           <div className="d-flex align-items-center">
-            <img
-              src={`https://images.unsplash.com/photo-1630446012689-9916791c866b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80`}
-              alt="team"
-            />
+            <img src={`${process.env.PUBLIC_URL}/team.jpg`} alt="team" />
             <div className="ms-2">
               <p>
                 <strong>Team-managed</strong>
@@ -107,4 +101,4 @@ const CreateProject = () => {
   );
 };
 
-export default connect(null)(CreateProject);
+export default connect(null, { issueCreated })(CreateProject);

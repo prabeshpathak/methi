@@ -1,0 +1,18 @@
+.project-settings {
+	margin: auto;
+
+	form {
+		width: 400px;
+		text-align: left;
+	}
+
+	input {
+		&:focus-visible {
+			box-shadow: none;
+		}
+	}
+
+	img {
+		width: 128px;
+	}
+}

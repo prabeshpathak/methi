@@ -2,13 +2,13 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDeDPg9N7gEYYhzKkjhWYBIxdnnUjiA2_E",
-  authDomain: "methi-86cb6.firebaseapp.com",
-  projectId: "methi-86cb6",
-  storageBucket: "methi-86cb6.appspot.com",
-  messagingSenderId: "181410743091",
-  appId: "1:181410743091:web:014677fdb1c21eba38b446",
-  measurementId: "G-8VSEY1RXFD",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.envMEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -27,4 +27,3 @@ export const signInWithGoogle = () => {
       console.log(error.message);
     });
 };
-

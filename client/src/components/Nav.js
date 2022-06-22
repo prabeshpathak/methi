@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../state/actions";
+import { issueCreatedDone, logout } from "../state/actions";
 import api from "../axios";
-import "./styles/_nav.scss";
 
-async function fetchData() {
+async function fetchData(lead) {
   return {
     projects: await api.get("/projects"),
     teams: await api.get("/teams"),
@@ -24,6 +23,7 @@ const Nav = ({
 }) => {
   const [projects, setProjects] = useState([]);
   const [teams, setTeams] = useState([]);
+
   useEffect(() => {
     if (!loading && user)
       (async () => {
@@ -49,11 +49,14 @@ const Nav = ({
   useEffect(() => {
     if (created?.hasOwnProperty("members")) {
       setTeams((prev) => [...prev, created]);
+      issueCreatedDone();
       return;
     }
     if (created?.hasOwnProperty("key")) {
       setProjects((prev) => [...prev, created]);
+      issueCreatedDone();
     }
+    // eslint-disable-next-line
   }, [created]);
 
   return (
@@ -66,13 +69,10 @@ const Nav = ({
     >
       <div className="container">
         <div className="d-flex align-items-center">
-          <Link to="/home">
+          <Link to="/">
             <div>
               <div className="nav__logo">
-                <img
-                  src={`https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80`}
-                  alt="logo"
-                />
+                <img src={`${process.env.PUBLIC_URL}/icon.png`} alt="logo" />
                 <h2>Methi</h2>
               </div>
             </div>
@@ -101,7 +101,7 @@ const Nav = ({
                       <h6>Software project</h6>
                     </Link>
                   ))}
-                  <Link className="createProjectBtn" if="createProjectBtn" to="/projects/create">
+                  <Link className="createProjectBtn" to="/projects/create">
                     Create project
                   </Link>
                 </div>
@@ -159,7 +159,7 @@ const Nav = ({
               </button>
             </>
           ) : (
-            <Link to="/signin" id='getFormBtn' className="btn btn-sm btn-outline-primary">
+            <Link to="/signin" className="btn btn-sm btn-outline-primary">
               Get it free
             </Link>
           )}
@@ -176,4 +176,4 @@ const mapStateToProps = (state) => ({
   user: state.reducer.user,
 });
 
-export default connect(mapStateToProps, { logout })(Nav);
+export default connect(mapStateToProps, { logout, issueCreatedDone })(Nav);
