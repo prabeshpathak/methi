@@ -1,18 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/_sidebar.scss";
 
 const Sidebar = ({ project, navigation }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__project">
         <img
-          src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80"
+          src={`${process.env.PUBLIC_URL}/cat.jpg`}
           height={24}
           width={24}
           alt="flag"
         />
-        {console.log(project)}
         <div className="ms-2">
           <h5>{project ? project.title : "Loading..."}</h5>
           <p>Software project</p>
@@ -33,7 +31,6 @@ const Sidebar = ({ project, navigation }) => {
         >
           <i className="fa fa-th-list" aria-hidden="true"></i> Backlog
         </Link>
-
         <Link
           onClick={(e) => !project && e.preventDefault()}
           className={`${navigation === "boards" ? "sidebar--active" : ""}`}

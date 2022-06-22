@@ -3,6 +3,7 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import api from "../axios";
 import SprintIssueForm from "./SprintIssueForm";
+import Icon from "./svg/Icon";
 
 const Sprint = ({ issues, sprint, index, completeSprint, isLead }) => {
   const [expanded, setExpanded] = useState(true);
@@ -208,7 +209,7 @@ const Sprint = ({ issues, sprint, index, completeSprint, isLead }) => {
             onMouseDown={(e) => e.stopPropagation()}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/sprint-completed.png`}
+              src={`${process.env.PUBLIC_URL}/sprint-completed.jpg`}
               alt="sprint completed"
             />
             <div className="p-4">
@@ -372,6 +373,7 @@ const Sprint = ({ issues, sprint, index, completeSprint, isLead }) => {
         {issues.map((i) => (
           <Link to={`/issues/${i._id}`} className="sprint__issue" key={i._id}>
             <div className="d-flex align-items-center">
+              <Icon icon={i.issueType} size={16} />
               <p className="ms-2">{i.summary}</p>
               {i.epic && <p className="sIssueEpic">{i.epic.summary}</p>}
             </div>
