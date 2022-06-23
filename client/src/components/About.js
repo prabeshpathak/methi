@@ -28,7 +28,7 @@ const About = ({ login, setNotification }) => {
       <p>
         Hello, this is Team Cults. <span className="fw-bold">Methi</span> is
         basically a very light version of
-        <a href="https://www.atlassian.com/software/jira">Jira</a>. We tried to
+        <a href="https://www.atlassian.com/software/jira"> Jira</a>. We tried to
         remake the agile development part of Methi. You can create account then
         create a team or get added to other teams in order to assign issues to
         others or get assigned yourself. Project lead can create or modify
