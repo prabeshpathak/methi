@@ -6,8 +6,9 @@ import api, { setAuthToken } from "../axios";
 import "./styles/_signin.scss";
 import { signInWithGoogle } from "../services/firebase";
 import firebase from "firebase/compat/app";
+import { setNotification } from "../state/actions";
 
-const SignIn = ({ isAuthenticated, login }) => {
+const SignIn = ({ isAuthenticated, login, setNotification }) => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -38,10 +39,10 @@ const SignIn = ({ isAuthenticated, login }) => {
       const { data } = await api.post(route, { email, password, fullName });
       localStorage.setItem("token", data.token);
       setAuthToken(data.token);
+
       login(data.user);
     } catch (error) {
-      if (error.response) console.log(error.response.data);
-      else console.log(error);
+      console.log(error);
       setLoader(false);
       setDisabled(false);
     }

@@ -71,7 +71,7 @@ const CreateProject = ({ issueCreated }) => {
         <div className="create-project__info">
           <h5>Template</h5>
           <div className="d-flex align-items-center">
-            <img src={`${process.env.PUBLIC_URL}/nosprint.jpg`} alt="scrum" />
+            <img src={`${process.env.PUBLIC_URL}/npsprint.jpg`} alt="scrum" />
             <div className="ms-2">
               <p>
                 <strong>Scrum</strong>

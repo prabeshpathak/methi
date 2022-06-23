@@ -209,7 +209,7 @@ const Sprint = ({ issues, sprint, index, completeSprint, isLead }) => {
             onMouseDown={(e) => e.stopPropagation()}
           >
             <img
-              src={`${process.env.PUBLIC_URL}/sprint-completed.jpg`}
+              src={`${process.env.PUBLIC_URL}/sprint-completed.PNG`}
               alt="sprint completed"
             />
             <div className="p-4">

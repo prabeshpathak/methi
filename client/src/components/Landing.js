@@ -7,7 +7,7 @@ const Landing = ({ isAuthenticated }) => {
 	return (
 		<div className="landing container">
 			<h1>The #1 software development tool used by agile teams</h1>
-			<img src={`${process.env.PUBLIC_URL}/landing.jpg`} alt="" />
+			<img src={`${process.env.PUBLIC_URL}/landing.png`} alt="" />
 		</div>
 	);
 };
