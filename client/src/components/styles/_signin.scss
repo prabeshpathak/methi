@@ -1,44 +1,16 @@
-
-.Methi{
-	text-align: center;
-	margin-top: 2rem;
-	
-}
-.signin { 
-	margin-top: 10rem;
-	// margin-left: 50rem;
-	display:flex;
-	// flex-direction: column;
-	// justify-content: flex-start;
-	justify-content: space-evenly;
+.signin {
 	h1 {
 		color: #0052cc;
 		text-align: center;
 		padding: 40px;
-		
 	}
-
-	.signimg{
-		height: 35%;
-		width: 35%;
-		margin-top: -9rem;
-		margin-left: -5rem;
-	}
-
-	
-
 
 	form {
-
 		border-radius: 3px;
 		box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.25);
-		max-width: 450px;
-		padding: 35px 45px;
-		width: 500px;
-		height: 350px;
-		margin-top:2rem;
-		margin-right: 10rem;
-		// margin: auto;
+		min-width: 40%;
+		padding: 32px 40px;
+		margin: auto;
 
 		i {
 			animation: spin 0.4s linear infinite;
@@ -53,6 +25,15 @@
 
 	&__expandable {
 		animation: inputAnim 0.3s ease-in;
+	}
+
+	&__form {
+		display: flex;
+
+		& img {
+			width: 40%;
+			object-fit: cover;
+		}
 	}
 
 	h5 {
@@ -72,14 +53,6 @@
 		}
 	}
 
-	// .signimg{
-	// 	height: 60%;
-	// 	width: 60%;
-	// 	margin-top: -20rem;
-	// 	margin-left: 70rem;
-	
-	// }
-
 	.btn-link {
 		font-size: 15px;
 		text-decoration: none;
@@ -90,22 +63,3 @@
 	}
 }
 
-
-
-@keyframes inputAnim {
-	0% {
-		height: 0;
-		opacity: 0;
-	}
-
-	100% {
-		height: auto;
-		opacity: 1;
-	}
-}
-
-@keyframes spin {
-	100% {
-		transform: rotate(360deg);
-	}
-}

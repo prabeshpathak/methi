@@ -7,9 +7,6 @@ import "./styles/_signin.scss";
 import { signInWithGoogle } from "../services/firebase";
 import firebase from "firebase/compat/app";
 import { setNotification } from "../state/actions";
-import logo from "../logo.jpg"
-import wavev from "../wavev.png"
-
 
 const SignIn = ({ isAuthenticated, login, setNotification }) => {
   const [email, setEmail] = useState("");
@@ -60,87 +57,72 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
     else return "Continue";
   };
   return (
-    <div >
-        <h1 className="Methi">
+    <div className="signin" id="signIn">
+      <h1>
         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> METHI
       </h1>
-
-<div className="signin" id="signIn">
-            <img className="signimg" src={logo}></img>
-           
-      <div  >
-      <form onSubmit={handleSubmit}>
-        <h5>
-          {formModeLogin ? "Log in to your account" : "Create a new account"}
-        </h5>
-        
-        <input
-          className="form-control"
-          type="text"
-          disabled={disabled}
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          id="email"
-        />
-        {!formModeLogin && (
+      <div className="signin__form">
+        <img src={`${process.env.PUBLIC_URL}/landing.PNG`} alt="" />
+        <form onSubmit={handleSubmit}>
+          <h5>
+            {formModeLogin ? "Log in to your account" : "Create a new account"}
+          </h5>
           <input
+            name="email"
             className="form-control"
             type="text"
             disabled={disabled}
-            autoComplete="full-name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="Full name"
-            id="fullName"
+            autoComplete="email"
+            value={email.email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            id="email"
           />
-        )}
-        {formExpanded && (
-          <input
-            className={`form-control ${formExpanded && "signin__expandable"}`}
-            type="password"
-            disabled={disabled}
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            id="password"
-          />
-        )}
-        <button className="btn signin__submit" type="submit" id="continue">
-          {getBtnText()}
-        </button>
-
-        <button
-          onClick={() => setFormModeLogin(!formModeLogin)}
-          type="button"
-          disabled={disabled}
-          className="btn btn-link"
-          id="signUpLink"
-        >
-          {formModeLogin
-            ? "Sign up for an account"
-            : "Already have an Methi account? Log in"}
-        </button>
-        <div className="login-buttons">
-          <button className="login-provider-button" onClick={signInWithGoogle}>
-            <img
-              src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
-              alt="google icon"
+          {!formModeLogin && (
+            <input
+              name="fullName"
+              className="form-control"
+              type="text"
+              disabled={disabled}
+              autoComplete="full-name"
+              value={fullName.fullname}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder="Full name"
+              id="fullName"
             />
-            <span> Continue with Google</span>
+          )}
+          {formExpanded && (
+            <input
+              className={`form-control ${formExpanded && "signin__expandable"}`}
+              type="password"
+              name="password"
+              disabled={disabled}
+              autoComplete="current-password"
+              defaultValue={password.password}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              id="password"
+            />
+          )}
+          <button className="btn signin__submit" type="submit" id="continue">
+            {getBtnText()}
           </button>
-        </div>
-      </form>
 
+          <button
+            onClick={() => setFormModeLogin(!formModeLogin)}
+            type="button"
+            disabled={disabled}
+            className="btn btn-link"
+            id="signUpLink"
+          >
+            {formModeLogin
+              ? "Sign up for an account"
+              : "Already have an Methi account? Log in"}
+          </button>
+        </form>
+      </div>
     </div>
-
-    </div>
-    </div>
-    
-    
-    
   );
 };
 
