@@ -67,7 +67,7 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
 
 <div className="signin" id="signIn">
             <img className="signimg" src={logo}></img>
-            {/* <img className="svgimg" src={wavev}></img> */}
+           
       <div  >
       <form onSubmit={handleSubmit}>
         <h5>
