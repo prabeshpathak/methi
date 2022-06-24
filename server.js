@@ -60,7 +60,7 @@ if (process.env.NODE_ENV == "test") {
 
 // importing the routes
 app.use("/api/home", require("./api/home"));
-app.use("/api/signin", require("./api/signIn"));
+app.use("/api/signin", require("./api/signin"));
 app.use("/api/projects", require("./api/project"));
 app.use("/api/issues", require("./api/issue"));
 app.use("/api/sprints", require("./api/sprint"));

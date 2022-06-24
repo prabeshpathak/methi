@@ -7,6 +7,9 @@ import "./styles/_signin.scss";
 import { signInWithGoogle } from "../services/firebase";
 import firebase from "firebase/compat/app";
 import { setNotification } from "../state/actions";
+import logo from "../logo.jpg"
+import wavev from "../wavev.png"
+
 
 const SignIn = ({ isAuthenticated, login, setNotification }) => {
   const [email, setEmail] = useState("");
@@ -57,14 +60,20 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
     else return "Continue";
   };
   return (
-    <div className="signin" id="signIn">
-      <h1>
+    <div >
+        <h1 className="Methi">
         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> METHI
       </h1>
+
+<div className="signin" id="signIn">
+            <img className="signimg" src={logo}></img>
+            {/* <img className="svgimg" src={wavev}></img> */}
+      <div  >
       <form onSubmit={handleSubmit}>
         <h5>
           {formModeLogin ? "Log in to your account" : "Create a new account"}
         </h5>
+        
         <input
           className="form-control"
           type="text"
@@ -124,7 +133,14 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
           </button>
         </div>
       </form>
+
     </div>
+
+    </div>
+    </div>
+    
+    
+    
   );
 };
 
