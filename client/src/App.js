@@ -37,7 +37,7 @@ function App({ retrieveSession }) {
       />
       {formOpen && <Create setFormOpen={setFormOpen} />}
       <div
-        className="nav-padding"
+        className={`${location.pathname !== "/" && "nav-padding"}`}
         onClick={() => setNavModals({ projects: false, teams: false })}
       >
         <Notification />
