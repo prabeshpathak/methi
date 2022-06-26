@@ -4,6 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const Project = require("../models/project");
 const express = require("express");
+const { OAuth2Client } = require("google-auth-library");
 
 // exporting the registered user model and getting the user
 exports.registerUser = async (data) => await User.create(data);
@@ -87,4 +88,62 @@ exports.authorizations = async (req, res, next) => {
   if (!project || project.lead.toString() !== req.user._id)
     return res.status(401).send("Not authorized to modify project");
   next();
+};
+
+// handles google login
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+exports.googleLogin = async (req, res) => {
+  const { idToken } = req.body;
+
+  await client
+    .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT_ID })
+    .then(async (response) => {
+      const { email_verified, name, email } = response.payload;
+
+      if (email_verified) {
+        await User.findOne({ email }).exec(async (err, user) => {
+          if (user) {
+            const token = await jwt.sign(
+              { _id: user._id },
+              process.env.TOKEN_SECRET,
+              {
+                expiresIn: "7d",
+              }
+            );
+            const { _id, email, fullName } = user;
+            return res.json({
+              token,
+              user: { _id, email, fullName },
+            });
+          } else {
+            const password = email + process.env.TOKEN_SECRET;
+
+            user = new User({ fullName: name, email, password });
+
+            await user.save((err, data) => {
+              if (err) {
+                return res.status(400).json({
+                  error: "User signup failed with google",
+                });
+              }
+              const token = jwt.sign(
+                { _id: data._id },
+                process.env.TOKEN_SECRET,
+                { expiresIn: "7d" }
+              );
+              const { _id, email, fullName } = data;
+              return res.status(200).json({
+                token,
+                user: { _id, email, fullName },
+              });
+            });
+          }
+        });
+      } else {
+        return res.status(400).json({
+          error: "Google login failed. Try again",
+        });
+      }
+    });
 };
