@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { login } from "../state/actions";
 import api, { setAuthToken } from "../axios";
+import { gapi } from "gapi-script";
 import "./styles/_signin.scss";
-import { signInWithGoogle } from "../services/firebase";
 import firebase from "firebase/compat/app";
 import { setNotification } from "../state/actions";
+
+import { GoogleLogin } from "react-google-login";
 
 const SignIn = ({ isAuthenticated, login, setNotification }) => {
   const [email, setEmail] = useState("");
@@ -17,15 +19,32 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
   const [loader, setLoader] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  firebase.auth().onAuthStateChanged(async (user) => {
-    if (user) {
-      const { displayName, email } = user;
-      setEmail(email);
-      setFullName(displayName);
-    } else {
-      <Redirect to="/register" />;
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope: "email",
+      });
     }
-  });
+
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const responseGoogleSuccess = async (response) => {
+    try {
+      const { data } = await api.post("/signin/googlelogin", {
+        idToken: response.tokenId,
+      });
+      localStorage.setItem("token", data.token);
+      setAuthToken(data.token);
+      login(data.user);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const responseGoogleError = (response) => {
+    console.log(response);
+  };
 
   if (isAuthenticated) return <Redirect to="/home" />;
   const handleSubmit = async (e) => {
@@ -108,7 +127,6 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
           <button className="btn signin__submit" type="submit" id="continue">
             {getBtnText()}
           </button>
-
           <button
             onClick={() => setFormModeLogin(!formModeLogin)}
             type="button"
@@ -120,6 +138,20 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
               ? "Sign up for an account"
               : "Already have an Methi account? Log in"}
           </button>
+          <>
+            <br />
+            Or
+            <hr />
+            <GoogleLogin
+              clientId="1058367627067-hse0gfcadea1ib80ica95rsffeovith9.apps.googleusercontent.com"
+              buttonText={`${
+                !formModeLogin ? "Register with Google" : "Login with google"
+              }`}
+              onSuccess={responseGoogleSuccess}
+              onFailure={responseGoogleError}
+              cookiePolicy={"single_host_origin"}
+            />
+          </>
         </form>
       </div>
     </div>
