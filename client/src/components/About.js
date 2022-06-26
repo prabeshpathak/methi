@@ -1,7 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import api, { setAuthToken } from "../axios";
-import { login, setNotification } from "../state/actions";
 
 // component for the about page
 const About = () => {
@@ -12,4 +9,4 @@ const About = () => {
   );
 };
 
-export default connect(null, { login, setNotification })(About);
+export default About;

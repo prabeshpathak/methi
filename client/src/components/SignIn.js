@@ -5,12 +5,10 @@ import { login } from "../state/actions";
 import api, { setAuthToken } from "../axios";
 import { gapi } from "gapi-script";
 import "./styles/_signin.scss";
-import firebase from "firebase/compat/app";
-import { setNotification } from "../state/actions";
 
 import { GoogleLogin } from "react-google-login";
 
-const SignIn = ({ isAuthenticated, login, setNotification }) => {
+const SignIn = ({ isAuthenticated, login }) => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -143,7 +141,7 @@ const SignIn = ({ isAuthenticated, login, setNotification }) => {
             Or
             <hr />
             <GoogleLogin
-              clientId="1058367627067-hse0gfcadea1ib80ica95rsffeovith9.apps.googleusercontent.com"
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               buttonText={`${
                 !formModeLogin ? "Register with Google" : "Login with google"
               }`}
