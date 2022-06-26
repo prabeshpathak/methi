@@ -106,6 +106,7 @@ const Team = ({ match, user }) => {
       });
       setTeam({ ...team, members: [...team.members, data] });
       setAddModal(false);
+      window.location.reload();
     } catch (error) {
       console.log(error.response);
     }
@@ -119,6 +120,8 @@ const Team = ({ match, user }) => {
       });
       await api.post("/teams/remove/", { team: team._id, member });
       setDeleteMember(null);
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }

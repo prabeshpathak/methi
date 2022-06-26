@@ -403,7 +403,13 @@ const Sprint = ({ issues, sprint, index, completeSprint, isLead }) => {
               issueType="story"
             />
           ) : (
-            <h6 onClick={() => setCreateIssue(true)}>+ Create issue</h6>
+            <h6
+              onClick={() => {
+                setCreateIssue(true);
+              }}
+            >
+              + Create issue
+            </h6>
           ))}
       </div>
     </div>

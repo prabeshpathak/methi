@@ -79,6 +79,8 @@ const Issue = ({ match, user, setNotification }) => {
       });
       setIssue({ ...issue, issueType });
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }
@@ -102,6 +104,8 @@ const Issue = ({ match, user, setNotification }) => {
               },
       });
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }
@@ -116,6 +120,8 @@ const Issue = ({ match, user, setNotification }) => {
           project: issue.project._id,
         });
         setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
       } catch (error) {
         console.log(error.response);
       }
@@ -131,6 +137,8 @@ const Issue = ({ match, user, setNotification }) => {
       setIssue({ ...issue, description: editedDescription });
       setDescriptionEditing(false);
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }
@@ -145,6 +153,8 @@ const Issue = ({ match, user, setNotification }) => {
       });
       setIssue({ ...issue, issueStatus });
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }
@@ -168,6 +178,8 @@ const Issue = ({ match, user, setNotification }) => {
               },
       });
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }
@@ -181,6 +193,7 @@ const Issue = ({ match, user, setNotification }) => {
         project: issue.project._id,
       });
       setNotification("Issue updated", "info text-info");
+
     } catch (error) {
       console.log(error.response);
     }
@@ -204,6 +217,8 @@ const Issue = ({ match, user, setNotification }) => {
               },
       });
       setNotification("Issue updated", "info text-info");
+      window.location.reload();
+
     } catch (error) {
       console.log(error.response);
     }

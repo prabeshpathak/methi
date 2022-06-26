@@ -79,6 +79,7 @@ const Backlog = ({
           return i;
         })
     );
+    window.location.reload();
   };
 
   const getStatusClass = (issueStatus) => {

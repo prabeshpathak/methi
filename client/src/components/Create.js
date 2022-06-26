@@ -73,6 +73,7 @@ const Create = ({ user, setFormOpen, issueCreated, setNotification }) => {
         sprint: "",
       });
       setFormSubmitting(false);
+      window.location.reload();
     } catch (error) {
       console.log(error.response);
     }
