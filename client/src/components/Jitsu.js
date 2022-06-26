@@ -1,12 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useJitsi } from "react-jutsu";
+import { useState, useEffect } from "react";
 
-const Jitsu = () => {
+const Jitsu = ({ user }) => {
+  const [fullName, setFullName] = useState("");
+  useEffect(() => {
+    if (user) setFullName(user.fullName);
+  }, [user]);
+
   const jitsiConfig = {
-    roomName: '',
-    displayName: '',
-    password: '',
-    subject: '',
+    roomName: `Team Call ${
+      Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)
+    }`,
+    displayName: fullName,
+    password: "",
+    subject: "Team Meeting for Scrum",
     configOverwrite: {
       startAudioMuted: true,
       startVideoMuted: true,
@@ -28,12 +37,16 @@ const Jitsu = () => {
         style={{
           ...{
             width: "100vw",
-            height: "100vh",
+            height: "92vh",
+            overflow: "hidden",
           },
         }}
       />
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  user: state.reducer.user,
+});
 
-export default Jitsu;
+export default connect(mapStateToProps)(Jitsu);
