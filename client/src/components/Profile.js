@@ -42,6 +42,7 @@ const Profile = ({ user, login, setNotification }) => {
               className="form-control mb-3"
               required
               value={formdata.email}
+              disabled
               onChange={(e) =>
                 setFormData({ ...formdata, [e.target.name]: e.target.value })
               }

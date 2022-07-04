@@ -6,6 +6,7 @@ const {
   login,
   updateUser,
   getUser,
+  googleLogin,
 } = require("../controllers/auth");
 
 const router = require("express").Router();
@@ -54,5 +55,7 @@ router.post("/login", async (req, res) => {
     res.send(error.message);
   }
 });
+
+router.post("/googleLogin", googleLogin);
 
 module.exports = router;

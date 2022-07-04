@@ -8,7 +8,7 @@
 	form {
 		border-radius: 3px;
 		box-shadow: -1px 0px 6px 1px rgba(0, 0, 0, 0.25);
-		max-width: 400px;
+		min-width: 40%;
 		padding: 32px 40px;
 		margin: auto;
 
@@ -25,6 +25,15 @@
 
 	&__expandable {
 		animation: inputAnim 0.3s ease-in;
+	}
+
+	&__form {
+		display: flex;
+
+		& img {
+			width: 40%;
+			object-fit: cover;
+		}
 	}
 
 	h5 {
@@ -54,20 +63,3 @@
 	}
 }
 
-@keyframes inputAnim {
-	0% {
-		height: 0;
-		opacity: 0;
-	}
-
-	100% {
-		height: auto;
-		opacity: 1;
-	}
-}
-
-@keyframes spin {
-	100% {
-		transform: rotate(360deg);
-	}
-}
