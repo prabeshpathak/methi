@@ -8,8 +8,8 @@
     "test": "jest",
     "testing": "cross-env NODE_ENV=test nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["async","firebase","google-auth-library","mongo"],
+  "author": "Anuragh Timalsina",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,6 +20,9 @@
     "jsdoc": "^3.6.10",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3"
+  },
+  "engines": {
+    "node": "16.15.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
