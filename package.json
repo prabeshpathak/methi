@@ -23,12 +23,13 @@
     "google-auth-library": "^8.0.3",
     "jsdoc": "^3.6.10",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.3"
+    "mongoose": "^6.3.3",
+    "dotenv": "^16.0.1"
+
   },
 
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "dotenv": "^16.0.1",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "supertest": "^6.2.3"

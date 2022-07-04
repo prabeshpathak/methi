@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://methi.herokuapp.com/api",
 });
 
 export const setAuthToken = (token = localStorage.getItem("token")) => {
