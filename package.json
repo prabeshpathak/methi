@@ -1,6 +1,9 @@
 {
   "name": "methi",
   "version": "1.0.0",
+    "engines": {
+    "node": "16.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,9 +25,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3"
   },
-  "engines": {
-    "node": "v16.15.0"
-  },
+
   "devDependencies": {
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
