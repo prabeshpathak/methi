@@ -79,7 +79,7 @@ const SignIn = ({ isAuthenticated, login }) => {
         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> METHI
       </h1>
       <div className="signin__form">
-        <img src={`${process.env.PUBLIC_URL}/landing.PNG`} alt="" />
+        <img src={`${process.env.PUBLIC_URL}/landing.png`} alt="" />
         <form onSubmit={handleSubmit}>
           <h5>
             {formModeLogin ? "Log in to your account" : "Create a new account"}
