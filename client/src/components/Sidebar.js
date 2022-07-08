@@ -6,7 +6,7 @@ const Sidebar = ({ project, navigation }) => {
     <div className="sidebar">
       <div className="sidebar__project">
         <img
-          src={`${process.env.PUBLIC_URL}/cat.jpg`}
+          src={`${process.env.PUBLIC_URL}/icon.png`}
           height={24}
           width={24}
           alt="flag"
