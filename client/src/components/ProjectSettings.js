@@ -119,7 +119,7 @@ const ProjectSettings = ({ match, user }) => {
         )}
         <form onSubmit={updateProject}>
           <div className="text-center">
-            <img src={`${process.env.PUBLIC_URL}/flag.jpg`} alt="flag" />
+            <img id="projectimg" src={`${process.env.PUBLIC_URL}/project.jpg`} alt="project" />
           </div>
           {project && (
             <>
